@@ -1,0 +1,13 @@
+To	 All Participants
+Subject	  Delay in background video recording plus notes available
+Authored By	 Jones, Christopher (ckrtj) ( Aug 21, 2013 11:02 AM )
+Label	  Normal
+Hi all,
+
+Sorry for the delay in getting the background video up. I will have it available later today. It will be about finding fixed points of a dynamical system and their stability/attraction properties.
+
+I have uploaded some notes I wrote this morning on deriving the Stommel model in detail. This is not done fully in the book and I will only sketch the steps in class tomorrow.
+
+Yesterday's lecture is now available. Both Lectures and notes will be posted on the sakai site under "Resources"
+
+Best, Chris.

@@ -1,0 +1,16 @@
+Subject	Reading and guiding questions for 8/27
+Saved By	Christopher Jones
+Modified Date	 Aug 24, 2013 9:31 am
+Beginning Date	 
+Ending Date	 
+Groups site
+Message
+Please read chapter 10, of Dijkstra's book, through 10.4 before Tuesday's class. In particular, section 10.4 is new material. Below are some questions that can guide your reading and will form the basis of a discussion in class on Tuesday:
+
+Explain the term "Thrermohaline" circulation. How is it captured in the Stommel model?
+Does the fluid flow in the same direction for each of the steady states (fixed points) of the Stommel model? What is the difference, in physical terms, between the TH and SA states?
+How would you go about determining whether we currently live under conditions that correspond to a "bistable" situation for the Stommel model? What would this imply?
+How does the bistability in the Stommel model help us understand rapid warming and/or cooling? Does it explain the asymmetry in the time scales of warming and cooling seen in the historical record?
+To what extent does the MOC bistability seen in the Stommel model manifest itself in the more complex models up the hierarchy?
+Dijkstra cites internal, oscillatory modes of variability in the MOC in section 10.4. Discuss the different modes he refers to, and the models he uses to capture the underlying processes?
+Can it be shown that the TH state is attracting for all parameter values for which it exists? And similarly for teh SA state? What about the "middle" state. is it always unstable?
