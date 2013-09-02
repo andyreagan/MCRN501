@@ -1,0 +1,14 @@
+
+To	 All Participants
+Subject	  New uploads
+Authored By    Jones, Christopher (ckrtj) ( Sep 1, 2013 1:19 PM )
+Label	  Normal
+Hi all,
+
+The videos of the background DS material are now up on the you tube channel. Find them by searching for MATH768 or MCRN501.
+
+I have also uploaded various files under resources: (1) a set of book references, (2) ppt and/or smart-board notes from past lectures, (3) some more papers, and (4) some notes I wrote on proving that if all eigenvalues of the Jacobian at a fixed point are in the left half plane then the fixed point is attracting.
+
+All of the lectures are now available as recordings on adobe connect (thanks, Andrew, for posting them so promptly.) Access them by going to resources and looking under "Class lectures."
+
+Best, Chris.
