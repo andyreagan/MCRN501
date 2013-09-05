@@ -1,0 +1,9 @@
+To	 Student Role
+Subject	  File uploaded on Maasch-Saltzman
+Authored By     Jones, Christopher (ckrtj) ( Sep 5, 2013 9:42 AM )
+Label	  Normal
+Hi all,
+
+I just uploaded some notes on the Hopf bifurcation in the Maasch-Saltzman model that I will cover today.
+
+CU later, Chris J.

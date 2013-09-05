@@ -1,0 +1,29 @@
+To	 All Participants
+Subject	  Project plans/suggestions
+Authored By	   Jones, Christopher (ckrtj) ( Aug 31, 2013 10:03 AM )
+Label	  Normal
+Attachments	
+PROJECTS_ma768_mcrn501.docx
+Hi all,
+
+One of the main tasks on Tuesday will be to set the groups for the first project week and define the projects. Below and attached is a first shot at formulating projects and setting groups. We will spend a lot of Tuesday discussing these and any possible changes. So, please think about whether my suggestions fit your interests.
+
+Thanks, Chris.
+
+ 
+
+PROJECT AND GROUP SUGGESTIONS:
+
+Develop Paillard’s three state model as a full DE model. (Caitlin, Tim–UNC)?
+Is there any evidence that the bistability in the MOC, as suggested by the Stommel model, could be a reality?  Discuss with particular reference to more complex models, such as EMICs and GCMs. (Annalise, Nuch, Isaac-UNC)?
+Develop the Stommel model to include more effects (boxes), such as a dynamic atmosphere and/or a deep ocean. How does this change the dynamics? What extra effects are seen? (Quentin, Travis-UNC)?
+Develop the version of the Stommel model that includes both polar regions. What new effects are seen? (Andrew-KU)?
+Consider the model of Gildor and Tziperman-2000 (see Dijkstra’s refs). Discuss and explore. How might it be enhanced?
+Develop the deep-decoupling oscillations model that combines those of Welander (1982) and de Verdiere (2007). Explore the dynamics and study what extra effects can be seen. (Anthony, Juan, Artur, Chris-ASU)?
+What does the IPCC AR4 (see www.ipcc.ch) say about warming/cooling events.  Discuss and criticize in the context of potential tipping points for the future. (Miriam, Miriam–Yeshiva)?
+Discuss the state-of-the-art in tipping point work, as exposed, for instance, at the ICMS meeting in Edinburgh Sept 9-13. (Kaitlin, Karna-Northwestern)?
+Discuss Brian Rose’s recent work on tipping to an ice-covered world in Aquaworld and Ridgeworld. (Stephen, Margaret-Bowdoin)?
+Develop model(s) incorporating the three feedbacks discussed by Dijkstra involving ice sheet dynamics: 11.3.2, 11.3.3 and 11.3.4.  In each case you consider, try to write a down a clear differential equation. Discuss the conclusions of Ghil and Le Treut. (Holly, Yan, Alex-UNC)?
+What information can be gleaned from the Maasch-Saltzmann model? Is it too simple? How might it be embellished to become more realistic.
+Discuss the relationship between internal oscillations and tipping in a bistable system. Can one trigger the other? Look at in the context of some model of your choice.
+Pick a specific model and situation it is aimed at explaining. Discuss how to reconcile it with data. When is the model corroborated by observations? Is it sufficient to be able to tune the model to fit the data? (Morgan, Andy-Vermont)?
