@@ -1,0 +1,1 @@
+cat INSOLN.LA2004.BTL.ASC | sed -E 's/[ ]+/,/g' | sed -E 's/D/e/g' > INSOLN.LA2004.BTL.ASC.csv 
