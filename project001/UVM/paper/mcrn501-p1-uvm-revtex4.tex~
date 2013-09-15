@@ -1,0 +1,47 @@
+\documentclass[prl,twocolumn,twoside,showpacs,byrevtex,superscriptaddress]{revtex4}
+%%\documentclass[aps,twocolumn]{revtex4}
+%%\documentclass[aps,preprint]{revtex4}
+%%\documentclass[aps,twocolumn,draft]{revtex4}
+
+%% general settings, packages, macros
+
+%% hack to load in root name
+\usepackage{currfile}
+\input{\currfilebase.settings}
+\input{\filenamebase.settings}
+
+\setboolean{twocolswitch}{true}
+
+%% \bibliographystyle{unsrtabbrv}
+
+%%%%%%%%% author(s), address(es) plus abstract
+
+\begin{document}
+
+\title{
+  \input{\filenamebase.title}
+}
+
+\input{\filenamebase.author}
+
+\date{\today}
+
+\begin{abstract}
+  \input{\filenamebase.abs}  
+\end{abstract}
+
+%% \input{\filenamebase.pacs}
+
+\maketitle
+
+%%%%%%%%% end of author(s), address(es) plus abstract
+
+\input{\filenamebase.body}
+
+\input{\filenamebase.acknowledgments}
+
+\input{\filenamebase.biblio}
+
+%% \input{\filenamebase.supplementary
+
+\end{document}

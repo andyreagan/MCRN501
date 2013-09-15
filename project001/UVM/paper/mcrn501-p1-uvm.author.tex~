@@ -1,0 +1,43 @@
+\author{
+\firstname{Andrew James}
+\surname{Reagan}
+}
+\email{andrew.reagan@uvm.edu}
+
+
+
+\author{
+\firstname{Morgan R.}
+\surname{Frank}
+}
+\email{jakerylandwilliams@gmail.com}
+
+
+
+%% \author{
+%% \firstname{Chris M.}
+%% \surname{Danforth}
+%% }
+%% \email{chris.danforth@uvm.edu}
+
+%% \author{
+%% \firstname{Peter}
+%% \surname{Dodds}
+%% }
+%% \email{peter.dodds@uvm.edu}
+
+%% \affiliation{
+%%   The Pipe and Slippers Initiative.
+%% } 
+
+\affiliation{
+  Department of Mathematics and Statistics,
+  Center for Complex Systems,
+  Computational Story Lab,
+  \&
+  the Vermont Advanced Computing Core,
+  University of Vermont,
+  Burlington,
+  VT, 05401
+}
+
