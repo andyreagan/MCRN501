@@ -1,10 +1,44 @@
 \section{Introduction}
 
 Understanding the past climate of the earth allows for us to begin to understand what effects we are having upon it, and to predict what the future will bring.
-From ice cores, a rough temperature record of Earth is constructed and we explain attempt to explain that.
+From the analysis of isotope ratios in ice cores and marine sediment cores, we obtain knowledge of past temperature from the ratio of $\delta ^{18} O$, a proxy for combined temperature and global ice volume.
+This time series is constructed over the past 2 Myr, with higher values indicating a colder climate as the ocean is enriched with $\delta ^{18} O$ during the colder conditions.
 The variation in the orbital parameters of our planet affect the amount of solar insolation recieved, and the timescale variation of these quantities is one possible forcing for past climatic change.
-The eliptical elements of the orbit are changing slowly in time, as is the orientation of the planet's spin axis.
-A three state model from Paillard fits the data emprically, and we attempt a rigorous fit of this model to data using the tools of evolutionary computation.
+This was hypothesized as early as the nineteenth century, and further elucidated by Milankovitch, whose name the study of these variations bears.
+The eccentricity of our eliptical orbit is changing slowly in time, as is the orientation of the planet's spin axis and the longitude closest to the sun at the vernal equinox.
+We refer to these parameters as $e$, $\epsilon$ and $\overline{\omega}$, respectively.
+
+The main questions arising about this time period from Dijkstra \cite{dijkstra2013} that any satisfactory theory of the Pleistocene Ice Ages should explain are:
+\begin{itemize}
+\item Why did the glacial-interglacial cycles appear in the Pleistocene?
+\item Which processes in the climate system caused the glacial-interglacial changes in global mean temperature, $p^a_{CO_2}$, and ice sheet extent?
+\item What caused the transistion (the MPT) from the 41-kyr world to the 100-kyr world about 700 kyr ago?
+\end{itemize}
+
+\begin{figure}[tpb!]
+\centering
+  \includegraphics[width=.48\textwidth]{../data/dO18/d18O_lisiecki_noname.pdf}
+  \caption{
+    The LR04 benthic $\delta ^{18} O$ stack over the Pleistocene, constructed by the graphic correlation of fifty-seven globally distributed benthic $\delta ^{18} O$ records versus time (data from Lisieki \cite{lisiecki2005pliocene}).
+  }
+  \label{fig:insol-data}
+\end{figure}
+
+The Milankovitch theory of orbital forcing is now the `null hypothesis' answer to these questions, and various models are available that relate this orbital forcing to global mean temperature and ice sheet extent have been proposed.
+The fit between the changing solar insolation and $\delta ^{18} O$ has been demonstrated not to be linear, opening the door for more complex explanations.
+The potentially impoortant feedbacks of ice-albedo, height-mass balance, load-accumulation, and precipation-temperature have all been combined into quasi-equilibrium and internal oscillation models, with the latter successfully demonstrating a reasonable fit to the data.
+In addition to these more complex models is a switching equilibria model from Didier Paillard that fits the data emprically, and does ``remarkable'' considering the simplicity of the model.
+
+In the present work we attempt a rigorous fit of Paillard's model to data using the tools of evolutionary computation.
+
+\begin{figure}[tpb!]
+\centering
+  \includegraphics[width=.45\textwidth]{../src/discrete_plot_noname.pdf}
+  \caption{
+    The discrete Paillard model.
+  }
+  \label{fig:paillard-fig3}
+\end{figure}
 
 \section{Paillard's Model}
 
@@ -31,6 +65,7 @@ To achieve similar results, we assume that the answer is yes, the time does rese
 
 
 \subsection{Differential equation model}
+
 
 This model is an extension of the discrete model.
 There are still three regimes but now we define the ice volume $v$ as a differential equation
@@ -73,6 +108,16 @@ Defining $\theta = 0$ the be the vernal equinox, we can write $\delta$ and $R_0/
 
 $$ \delta = \epsilon ~~~~\text{and} ~~~~ \frac{R_0}{R_E} = 1 + e\sin (\overline {\omega}) .$$
 
+\begin{figure}[tpb!]
+\centering
+  \includegraphics[width=.48\textwidth]{../data/insolation/laskar2004/insol_data2_noname.pdf}
+  \caption{
+    The average daily solar insolation $\overline{Q}_{\text{day}}$ is computed on the summer solstice at 65N with the prodived $e,\epsilon,$ and $\overline{\omega}$.
+  }
+  \label{fig:insol-data}
+\end{figure}
+
+
 \section{Evolutionary Algorithm Methods}
 
 
@@ -83,14 +128,6 @@ Morgan
 
 Figure \ref{fig:insol-data} depicts the reconstruction of insolation data back in time.
 
-\begin{figure}[tpb!]
-\centering
-  \includegraphics[width=.48\textwidth]{../data/insolation/insol_data2_noname.pdf}
-  \caption{
-    The average daily solar insolation $\overline{Q}_{\text{day}}$ is computed on the summer solstice at 65N with the prodived $e,\epsilon,$ and $\overline{\omega}$.
-  }
-  \label{fig:insol-data}
-\end{figure}
 
 Figure \ref{fig:paillard-fig3} is a direct representation of the second figure of Paillard's original paper \cite{paillard1998timing}.
 
@@ -103,14 +140,7 @@ Figure \ref{fig:paillard-fig3} is a direct representation of the second figure o
   \label{fig:paillard-fig3}
 \end{figure}
 
-\begin{figure}[tpb!]
-\centering
-  \includegraphics[width=.45\textwidth]{../src/discrete_plot_noname.pdf}
-  \caption{
-    The discrete Paillard model.
-  }
-  \label{fig:paillard-fig3}
-\end{figure}
+
 
 
 \section{Conclusion}

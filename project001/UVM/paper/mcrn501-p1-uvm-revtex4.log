@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  14 SEP 2013 21:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  15 SEP 2013 22:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -264,6 +264,9 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 ))
 (./mcrn501-p1-uvm-revtex4.aux
 
+LaTeX Warning: Label `fig:insol-data' multiply defined.
+
+
 LaTeX Warning: Label `fig:paillard-fig3' multiply defined.
 
 )
@@ -341,53 +344,67 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 4.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
-(./mcrn501-p1-uvm.title.tex) (./mcrn501-p1-uvm.body.tex [1{/usr/local/texlive/2
-013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../data/insolation/insol_data2_noname.pdf, id=22, 539.01375pt x 730.73pt>
-File: ../data/insolation/insol_data2_noname.pdf Graphic file (type pdf)
+(./mcrn501-p1-uvm.title.tex) (./mcrn501-p1-uvm.body.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 13.
 
-<use ../data/insolation/insol_data2_noname.pdf>
-Package pdftex.def Info: ../data/insolation/insol_data2_noname.pdf used on inpu
-t line 88.
-(pdftex.def)             Requested size: 244.79782pt x 331.86942pt.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
 
-<paillardFig3.pdf, id=23, 1192.455pt x 672.5125pt>
-File: paillardFig3.pdf Graphic file (type pdf)
- <use paillardFig3.pdf>
-Package pdftex.def Info: paillardFig3.pdf used on input line 99.
-(pdftex.def)             Requested size: 270.29938pt x 152.43756pt.
+<../data/dO18/d18O_lisiecki_noname.pdf, id=1, 482.80376pt x 493.845pt>
+File: ../data/dO18/d18O_lisiecki_noname.pdf Graphic file (type pdf)
 
-Overfull \hbox (24.29938pt too wide) in paragraph at lines 99--100
- [][] 
- []
+<use ../data/dO18/d18O_lisiecki_noname.pdf>
+Package pdftex.def Info: ../data/dO18/d18O_lisiecki_noname.pdf used on input li
+ne 20.
+(pdftex.def)             Requested size: 244.79782pt x 250.39572pt.
 
-<../src/discrete_plot_noname.pdf, id=24, 621.32124pt x 628.3475pt>
+<../src/discrete_plot_noname.pdf, id=2, 621.32124pt x 628.3475pt>
 File: ../src/discrete_plot_noname.pdf Graphic file (type pdf)
 
 <use ../src/discrete_plot_noname.pdf>
-Package pdftex.def Info: ../src/discrete_plot_noname.pdf used on input line 108
-.
+Package pdftex.def Info: ../src/discrete_plot_noname.pdf used on input line 36.
+
 (pdftex.def)             Requested size: 229.49844pt x 232.09183pt.
-) (./mcrn501-p1-uvm.acknowledgments.tex
-[2 <../data/insolation/insol_data2_noname.pdf> <./paillardFig3.pdf>]
+ [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../d
+ata/dO18/d18O_lisiecki_noname.pdf>]
+[2 <../src/discrete_plot_noname.pdf>]
+<../data/insolation/laskar2004/insol_data2_noname.pdf, id=50, 539.01375pt x 730
+.73pt>
+File: ../data/insolation/laskar2004/insol_data2_noname.pdf Graphic file (type p
+df)
+ <use ../data/insolation/laskar2004/insol_data2_noname.pdf>
+Package pdftex.def Info: ../data/insolation/laskar2004/insol_data2_noname.pdf u
+sed on input line 113.
+(pdftex.def)             Requested size: 244.79782pt x 331.86942pt.
 
-LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
- on input line 1.
+<paillardFig3.pdf, id=51, 1192.455pt x 672.5125pt>
+File: paillardFig3.pdf Graphic file (type pdf)
+ <use paillardFig3.pdf>
+Package pdftex.def Info: paillardFig3.pdf used on input line 136.
+(pdftex.def)             Requested size: 270.29938pt x 152.43756pt.
 
-) (./mcrn501-p1-uvm.biblio.tex (./mcrn501-p1-uvm-revtex4.bbl)) [3 <../src/discr
-ete_plot_noname.pdf>] (./mcrn501-p1-uvm-revtex4.aux)
+Overfull \hbox (24.29938pt too wide) in paragraph at lines 136--137
+ [][] 
+ []
+
+) (./mcrn501-p1-uvm.acknowledgments.tex) (./mcrn501-p1-uvm.biblio.tex
+(./mcrn501-p1-uvm-revtex4.bbl)) [3 <../data/insolation/laskar2004/insol_data2_n
+oname.pdf> <./paillardFig3.pdf>] (./mcrn501-p1-uvm-revtex4.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4545 strings out of 493315
- 60936 string characters out of 6137904
- 138235 words of memory out of 5000000
- 7880 multiletter control sequences out of 15000+600000
+ 4578 strings out of 493315
+ 61697 string characters out of 6137904
+ 147299 words of memory out of 5000000
+ 7908 multiletter control sequences out of 15000+600000
  10822 words of font info for 42 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 39i,7n,33p,365b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,7n,33p,365b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
@@ -396,20 +413,21 @@ sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
 r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
 local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/lo
 cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
-ive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
-/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/20
-13/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
-3/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2013/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2013/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2013/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2013/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on mcrn501-p1-uvm-revtex4.pdf (3 pages, 347830 bytes).
+l/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
+exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texl
+ive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive
+/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/20
+13/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2013/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2013/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2013/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2013/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2013/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on mcrn501-p1-uvm-revtex4.pdf (3 pages, 369544 bytes).
 PDF statistics:
- 147 PDF objects out of 1000 (max. 8388607)
- 105 compressed objects within 2 object streams
+ 165 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
