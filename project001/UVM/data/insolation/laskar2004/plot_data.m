@@ -107,6 +107,9 @@ data = {tmp(1:plot_back,2),tmp(1:plot_back,3),sin(tmp(1:plot_back,4))...
     ,tmp(1:plot_back,2).*sin(tmp(1:plot_back,4)),insolation(1:plot_back)};
 insol_data = [tmp(:,1) tmp(:,2) tmp(:,3) sin(tmp(:,4))...
      tmp(:,2).*sin(tmp(:,4)) insolation(:)];
+% without the sin
+insol_data2 = [tmp(:,2) tmp(:,3) tmp(:,4)...
+     insolation(:)];
  
 ranges = zeros(2,5);
 
