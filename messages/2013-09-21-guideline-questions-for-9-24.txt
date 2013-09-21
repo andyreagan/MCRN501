@@ -1,0 +1,31 @@
+To	 All Participants
+Subject	  Tuesday class 9/24
+Authored By	   Jones, Christopher (ckrtj) ( Sep 20, 2013 4:19 PM )
+Label	  Normal
+Attachments	
+Guideline questions.pdf
+Hi all,
+
+Tuesday's class will be based on the two papers:
+
+Saltzman 1962
+Lorenz 1963
+
+in the resources --> papers section. Please read them!! Attached and below (as well as in the announcements section) is a set of guiding questions for you to ponder.
+Tuesday's class will proceed as follows:
+
+2:00-2:30 discussion of mathematical content of the two papers, with poll/quiz to prompt discussion and check comprehension of issues.
+2:30-2:50 group discussions of guiding questions
+2:50-3:15 groups reporting on discussions.
+
+Guideline questions for the Lorenz and Saltzman papers:
+
+Compare and contrast the different goals of Saltzman and Lorenz.
+Discuss experimental implementations of Lorenz’ work (for the Vermont group!)
+Lorenz “proves” that non-periodic motion can occur in a simple system.
+The equations should be called the Saltzman equations as he derived them first. Discuss.
+Lorenz’ work is so important because he showed there is a strange attractor in a simple system.
+Lorenz’ work has had so much influence in the climate community because it showed the limits to predictability.
+The phenomena exposed in a low-dimensional model should not be viewed as physically relevant unless we know they are reproduced in the (full) model being approximated.
+If an approximation obtained by cutting off all but a small number of modes cannot be justified mathematically then it should not be trusted to give physically realistic results.
+Just because chaotic motion occurs in a low-dimensional model like the Lorenz system, there is no reason to believe it will be ubiquitous in high-dimensional systems.
