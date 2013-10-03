@@ -1,0 +1,13 @@
+To	 All Participants
+Subject	  Plan for next few weeks
+Authored By     Jones, Christopher (ckrtj) ( Sep 30, 2013 8:37 AM )
+Label	  Normal
+Hi all,
+
+Please see the posted announcement for the class for the next three weeks.
+
+There are various videos available and one set of notes. You Tube was not very friendly yesterday and only allowed me to post one of the videos. So, I posted the full set as mp4 files on the sakai site: see resources>video background lectures. Before tomorrow's class, please watch the set with prefix 2.1 about PV conservation, streamfunctions and the barotropic vorticity model. The other three are only relevant to Thursday's class. 
+
+There are also new notes posted on the setup for the Charney-deVore model. This is what we will cover tomorrow. Please read.
+
+Best, Chris.
