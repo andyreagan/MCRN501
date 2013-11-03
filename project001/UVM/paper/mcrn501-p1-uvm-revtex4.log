@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  17 SEP 2013 13:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  3 OCT 2013 14:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -357,17 +357,16 @@ File: ../data/dO18/d18O_lisiecki_noname.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../data/dO18/d18O_lisiecki_noname.pdf used on input li
 ne 20.
 (pdftex.def)             Requested size: 244.79782pt x 250.39572pt.
-
-<../src/discrete_plot_noname.pdf, id=2, 621.32124pt x 628.3475pt>
+ [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../d
+ata/dO18/d18O_lisiecki_noname.pdf>]
+<../src/discrete_plot_noname.pdf, id=35, 621.32124pt x 628.3475pt>
 File: ../src/discrete_plot_noname.pdf Graphic file (type pdf)
 
 <use ../src/discrete_plot_noname.pdf>
 Package pdftex.def Info: ../src/discrete_plot_noname.pdf used on input line 36.
 
 (pdftex.def)             Requested size: 229.49844pt x 232.09183pt.
- [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../d
-ata/dO18/d18O_lisiecki_noname.pdf>]
-[2 <../src/discrete_plot_noname.pdf>]
+ [2 <../src/discrete_plot_noname.pdf>]
 <../data/insolation/laskar2004/insol_data2_noname.pdf, id=50, 539.01375pt x 730
 .73pt>
 File: ../data/insolation/laskar2004/insol_data2_noname.pdf Graphic file (type p
@@ -410,18 +409,18 @@ File: ../src/results_plot_noname.pdf Graphic file (type pdf)
 Package pdftex.def Info: ../src/results_plot_noname.pdf used on input line 181.
 
 (pdftex.def)             Requested size: 244.79782pt x 234.16988pt.
-) (./mcrn501-p1-uvm.acknowledgments.tex)
-[5 <./gaImg.png> <../src/results_plot_noname.pdf>] (./mcrn501-p1-uvm.biblio.tex
+ [5 <./gaImg.png> <../src/results_plot_noname.pdf>]) (./mcrn501-p1-uvm.acknowle
+dgments.tex) (./mcrn501-p1-uvm.biblio.tex
 (./mcrn501-p1-uvm-revtex4.bbl)) [6] (./mcrn501-p1-uvm-revtex4.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4602 strings out of 493315
- 62026 string characters out of 6137904
+ 4600 strings out of 493315
+ 62008 string characters out of 6137904
  139470 words of memory out of 5000000
- 7929 multiletter control sequences out of 15000+600000
+ 7927 multiletter control sequences out of 15000+600000
  10822 words of font info for 42 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  39i,7n,33p,1626b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -445,7 +444,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2013/texmf
 ist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2013/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2013/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on mcrn501-p1-uvm-revtex4.pdf (6 pages, 633013 bytes).
+Output written on mcrn501-p1-uvm-revtex4.pdf (6 pages, 636492 bytes).
 PDF statistics:
  165 PDF objects out of 1000 (max. 8388607)
  115 compressed objects within 2 object streams
