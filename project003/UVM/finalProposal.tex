@@ -1,0 +1,32 @@
+\documentclass[onecolumn]{article}
+\title{Parameter Estimation in Toy Climate Models Utilizing a Genetic Algorithm}
+\author{Morgan Frank \& Andy Reagan\\ Team UVM}
+\usepackage{amsmath,amssymb}
+\usepackage{mathptm,graphicx,rotate,color}
+\hoffset=0in
+\voffset=-.2in
+\marginparwidth=0in
+\marginparsep=0in
+\oddsidemargin=0in
+\topmargin=0in
+\headheight=0in
+\textwidth=470pt
+\textheight = 620pt
+\fontsize{12}{15}
+\pagestyle{empty}
+
+\begin{document}
+\maketitle
+\indent Suppose a scientist observes a climatological phenomenon and devises a model principled in understood climatological mechanisms.
+The problem then becomes to find the parameters with which to run the model so as to best model the observed data.
+Common parameter estimation approaches make use of regression analysis (e.g. shooting algorithms), Maximum Likelihood Estimation, Monte Carlo sampling, or simply empirical tuning.
+We propose an alternative technique using a genetic algorithm for comparison.\\
+
+\indent Genetic algorithms (GAs) borrow the ideas of reproduction, mutation, and fitness from biological evolution to search for real-valued vectors leading to optimal fitness.
+Given a model and data, we will represent the parameters for the model as a real-valued vector and utilize Matlab's built-in GA implementation to attempt to find parameter choices that allow the model to best fit the data.
+Our fitness function will be based on how well the model-run resulting from the parameters fits the data.
+Initially, we intend to explore the effectiveness of GA on common toy models in dynamical systems and climate studies including the Lorenz '96 and '63 models, along with the Stommel model, Paillard model, and possibly other interesting models we discussed in class.
+Executing the computation will require a model run for each fitness assessment; therefore it would be interesting to explore how useful and practical  GA for parameter fitting can be as we move up the model hierarchy.
+Furthermore, we will explore the effectiveness of the GA as the dynamics of the toy models are changed to be more or less chaotic.
+If we find that GA performs comparably to more commonly used techniques, then GA may be a useful alternative to scientists investigating climate modeling.
+\end{document}
