@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="9">
+<project class_id="0" tracking_level="0" version="0">
+	<name>pleistocene model</name>
+	<uuid>afe2f084-6020-4017-85b1-1760813a670e</uuid>
+	<parent_uuid>00000000-0000-0000-0000-000000000000</parent_uuid>
+	<spreadsheet class_id="1" tracking_level="0" version="1">
+		<px class_id="2" tracking_level="1" version="0" object_id="_0">
+			<name></name>
+			<uuid>b15ef7a3-fb75-4dfa-98a7-003657fe276a</uuid>
+			<parent_uuid>afe2f084-6020-4017-85b1-1760813a670e</parent_uuid>
+			<data class_id="3" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</data>
+		</px>
+	</spreadsheet>
+	<settings class_id="4" tracking_level="0" version="1">
+		<px class_id="5" tracking_level="1" version="0" object_id="_1">
+			<name></name>
+			<uuid>4ca30b35-bb1b-4c13-a44f-67333e36209c</uuid>
+			<parent_uuid>b15ef7a3-fb75-4dfa-98a7-003657fe276a</parent_uuid>
+			<optional_settings class_id="6" tracking_level="0" version="0">
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="7" tracking_level="0" version="0">
+					<first>target</first>
+					<second>
+						<count>1</count>
+						<item_version>0</item_version>
+						<item>
+							<first>automatically_set_target</first>
+							<second>
+								<count>0</count>
+								<item_version>0</item_version>
+								<data>true</data>
+							</second>
+						</item>
+						<data></data>
+					</second>
+				</item>
+				<data></data>
+			</optional_settings>
+			<variable_options class_id="8" tracking_level="0" version="0">
+				<count>1</count>
+				<item_version>2</item_version>
+				<item class_id="9" tracking_level="0" version="2">
+					<smooth>0</smooth>
+					<smooth_amount>0.5</smooth_amount>
+					<smooth_along>&lt;row&gt;</smooth_along>
+					<smooth_weight>&lt;none&gt;</smooth_weight>
+					<missing>0</missing>
+					<missing_method>0</missing_method>
+					<outliers>0</outliers>
+					<outliers_factor>2</outliers_factor>
+					<normalized>0</normalized>
+					<normalized_offset>&lt;none&gt;</normalized_offset>
+					<normalized_scale>&lt;none&gt;</normalized_scale>
+					<normalized_offset_effective>0</normalized_offset_effective>
+					<normalized_scale_effective>1</normalized_scale_effective>
+					<filter>0</filter>
+					<filter_expression>1</filter_expression>
+				</item>
+			</variable_options>
+			<function_options class_id="10" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</function_options>
+			<seed_strings>
+				<count>0</count>
+				<item_version>0</item_version>
+			</seed_strings>
+			<search_relation class_id="11" tracking_level="0" version="0">
+				<op class_id="12" tracking_level="0" version="0">
+					<id>0</id>
+					<real>nan</real>
+					<integer>0</integer>
+					<x_index>0</x_index>
+					<misc_index>0</misc_index>
+				</op>
+				<args class_id="13" tracking_level="0" version="0">
+					<count>0</count>
+					<item_version>0</item_version>
+				</args>
+			</search_relation>
+			<fitness_metric>0</fitness_metric>
+			<data_original class_id="14" tracking_level="0" version="1">
+				<series class_id="15" tracking_level="0" version="0">
+					<count>0</count>
+					<item_version>0</item_version>
+				</series>
+				<t_stats class_id="16" tracking_level="0" version="0">
+					<min>0</min>
+					<max>0</max>
+					<mean>0</mean>
+					<median>0</median>
+					<sd>1</sd>
+					<iqm>0</iqm>
+					<iqr>1</iqr>
+				</t_stats>
+				<w_stats>
+					<min>0</min>
+					<max>0</max>
+					<mean>0</mean>
+					<median>0</median>
+					<sd>1</sd>
+					<iqm>0</iqm>
+					<iqr>1</iqr>
+				</w_stats>
+				<x_stats class_id="17" tracking_level="0" version="0">
+					<count>0</count>
+					<item_version>0</item_version>
+				</x_stats>
+				<hash></hash>
+			</data_original>
+			<context class_id="18" tracking_level="0" version="1">
+				<variable_names class_id="19" tracking_level="0" version="0">
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>&lt;row&gt;</item>
+				</variable_names>
+				<ops class_id="20" tracking_level="0" version="0">
+					<count>0</count>
+					<item_version>0</item_version>
+				</ops>
+				<op_complexities>
+					<count>83</count>
+					<item_version>0</item_version>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+					<item>1</item>
+				</op_complexities>
+				<function_context class_id="22" tracking_level="0" version="0">
+					<count>0</count>
+					<item_version>1</item_version>
+				</function_context>
+				<num_functions>0</num_functions>
+				<num_inputs>1</num_inputs>
+				<allowed_raw_vars>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>0</item>
+				</allowed_raw_vars>
+				<max_history_offset>0</max_history_offset>
+				<num_raw_variables>0</num_raw_variables>
+			</context>
+			<fitness_metric>0</fitness_metric>
+			<solution_ops>32</solution_ops>
+			<predictor_samples>32</predictor_samples>
+			<island_count>8</island_count>
+			<evaluations>0</evaluations>
+		</px>
+	</settings>
+	<results class_id="24" tracking_level="0" version="1">
+		<px class_id="25" tracking_level="1" version="1" object_id="_2">
+			<name></name>
+			<uuid>0367b723-e9b7-4c7c-b3b1-5bba0cdfd69f</uuid>
+			<parent_uuid>4ca30b35-bb1b-4c13-a44f-67333e36209c</parent_uuid>
+			<log_text></log_text>
+			<progress class_id="26" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</progress>
+			<statistics class_id="27" tracking_level="0" version="0">
+				<duration class_id="28" tracking_level="0" version="0">
+					<is_special>0</is_special>
+					<time_duration_hours>0</time_duration_hours>
+					<time_duration_minutes>0</time_duration_minutes>
+					<time_duration_seconds>0</time_duration_seconds>
+					<time_duration_fractional_seconds>0</time_duration_fractional_seconds>
+				</duration>
+				<cpu_cores>0</cpu_cores>
+				<generations>0</generations>
+				<evaluations>0</evaluations>
+				<generation_rate>0</generation_rate>
+				<evaluations_rate>0</evaluations_rate>
+				<last_improved_evals>0</last_improved_evals>
+			</statistics>
+			<solutions class_id="29" tracking_level="0" version="0">
+				<front class_id="30" tracking_level="0" version="0">
+					<count>0</count>
+					<item_version>0</item_version>
+				</front>
+			</solutions>
+			<resume_strings class_id="31" tracking_level="0" version="0">
+				<count>0</count>
+				<item_version>0</item_version>
+			</resume_strings>
+		</px>
+	</results>
+	<tree class_id="32" tracking_level="0" version="0">
+		<count>1</count>
+		<item_version>0</item_version>
+		<item class_id="33" tracking_level="0" version="0">
+			<first>
+				<px class_id_reference="2" object_id_reference="_0"></px>
+			</first>
+			<second class_id="34" tracking_level="0" version="0">
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="35" tracking_level="0" version="0">
+					<first>
+						<px class_id_reference="5" object_id_reference="_1"></px>
+					</first>
+					<second class_id="36" tracking_level="0" version="0">
+						<count>1</count>
+						<item_version>1</item_version>
+						<item>
+							<px class_id_reference="25" object_id_reference="_2"></px>
+						</item>
+					</second>
+				</item>
+			</second>
+		</item>
+	</tree>
+</project>
+</boost_serialization>
+
