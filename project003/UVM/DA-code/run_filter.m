@@ -8,6 +8,7 @@
 clear all
 close all
 addpath(genpath('/Users/andyreagan/work/2013/2013-05data-assimilation/src'))
+addpath(genpath('/users/a/r/areagan/work/2013/data-assimilation/src'))
 
 %% fixed
 dim = 6;
