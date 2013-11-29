@@ -22,14 +22,19 @@ cd /users/a/r/areagan/work/2013/data-assimilation/src/experiments/openFoamAssimi
 # done
 
 ## for a single test (always find something wrong)
-C=40
-D=10
-E=20
-SEED=100
-for B in 32 100 1000 2000 5000 10000 20000 40000
-do
-  qsub -v NUMTSENSORS="$B",NUMWINDOWS="$C",WINDOWLEN="$D",NUMENS="$E",COUNTER="$SEED" run.qsub
-done
+EXPCOUNT=1
+## tunable parameters
+NUMRUNS=1
+RUNTIME=200
+
+## part of experiment
+OBSERROR=0.05
+ERRORDIST="normal"
+SUBSAMPLEALPHA=1
+RHO=28
+OBSVAR=3
+qsub -v NUMRUNS,RUNTIME,OBSERROR,ERRORDIST,SUBSAMPLEALPHA,RHO,OBSVAR,EXPCOUNT run.qsub
+
 
 
 

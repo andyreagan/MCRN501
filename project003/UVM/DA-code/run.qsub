@@ -9,7 +9,22 @@
 #PBS -j oe
 
 
+## for a single test (always find something wrong)
+export EXPCOUNT
+## tunable parameters
+export NUMRUNS
+export RUNTIME
+
+## part of experiment
+export OBSERROR
+export ERRORDIST
+export SUBSAMPLEALPHA
+exporr RHO
+export OBSVAR
+
 cd /users/a/r/areagan/class/2013/MCRN501/project003/UVM/DA-code
 echo "running a parameter estimation using EKF"
 
 matlab -nodesktop -nosplash -r run_filter
+
+

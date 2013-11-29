@@ -12,15 +12,24 @@ addpath(genpath('/users/a/r/areagan/work/2013/data-assimilation/src'))
 
 %% fixed
 dim = 6;
+tStep = 0.01;
 
 %% tunable parameters
-numRuns = 1;
-obs_error_std = 0.05;
-runTime = 50; %  model units
-window = .5; %  window
+numRuns = checkenv('NUMRUNS',1);
+runTime = checkenv('RUNTIME',50); %  model units
+
+%% part of experiment
+obs_error_std = checkenv('OBSERROR',0.05);
+obs_error_type = checkenv('OBSERRORDIST','normal');
+windowAlpha = checkenv('SUBSAMPLEALPHA',1); 
+rho = checkenv('RHO',28);
+obsVarLen = checkenv('OBSVAR',3);
+obsVar = 1:obsVarLen;
+
+%% set things based off of this
+windowLen = windowAlpha*tStep;
 modelname = 'lorenz63';
-params = {8/3,10,28};
-obsVar = 1:3;
+params = {8/3,10,rho};
 
 %% build observation operator
 H = zeros(length(obsVar),dim);
@@ -28,30 +37,36 @@ H(obsVar,obsVar) = eye(length(obsVar));
 R = obs_error_std*eye(length(obsVar));
 
 %% initialize storage
-num_windows = ceil(runTime/window);
+num_windows = ceil(runTime/windowLen);
 truth_vec = repmat(zeros(dim,num_windows+1),1,numRuns);
 
 %%  make a truth run
 truthmodel = lorenz63();
 truthmodel.params = params;
 truthmodel.init();
-truthmodel.window = window;
-% save the IC because I've give the DA,noDA runs good IC?
+truthmodel.window = windowLen;
+%% save the IC
 tmp_truth_vec(1:3,1) = truthmodel.x;
-% generate the truth x timeseries
+%% generate the truth x timeseries
 for j=1:num_windows
 	truthmodel.run()
 	tmp_truth_vec(1:3,j+1) = truthmodel.x;
 end
 truth_vec(1:3,1) = tmp_truth_vec(1:3,1);
 truth_vec(1:3,2:end) = repmat(tmp_truth_vec(:,2:end),1,numRuns);
-% fill in the truth parameters
+%% fill in the truth parameters
 truth_vec(4:6,:) = repmat([params{1};params{2};params{3}],1,length(truth_vec(1,:)));
 
-% pass all of the observations, including time 0
-obs_pert = truth_vec(obsVar,:) + obs_error_std*randn(size(truth_vec(obsVar,:)));
-[EKF_f_vec,EKF_a_vec] = modelDAinterface(@lorenz63_paramEst,'EKF',obs_pert,0:window:(runTime*numRuns),H,R,window,0,0);
-[ETKF_f_vec,ETKF_a_vec] = modelDAinterface(@lorenz63_paramEst,'ETKF',obs_pert,0:window:(runTime*numRuns),H,R,window,0,0); 
+%% pass all of the observations, including time 0
+switch obs_error_type
+  case 'normal'
+    obs_pert = truth_vec(obsVar,:) + obs_error_std*randn(size(truth_vec(obsVar,:)));
+  case 'uniform'
+    obs_pert = truth_vec(obsVar,:) + obs_error_std*rand(size(truth_vec(obsVar,:))) - obs_error_std/2*ones(size(truth_vec(obsVar,:)));
+end
+
+[EKF_f_vec,EKF_a_vec] = modelDAinterface(@lorenz63_paramEst,'EKF',obs_pert,0:windowLen:(runTime*numRuns),H,R,windowLen,0,0);
+%% [ETKF_f_vec,ETKF_a_vec] = modelDAinterface(@lorenz63_paramEst,'ETKF',obs_pert,0:windowLen:(runTime*numRuns),H,R,windowLen,0,0); 
 fprintf('initial parameters\n')
 disp(EKF_f_vec(:,1))
 
@@ -87,63 +102,3 @@ for j=1:num_windows+1
 		%errors_none(k,j) = errors_none(k,j)+rmse(truth_vec(k,1:j),none_f_vec(k,1:j));
 	end
 end
-
-% correct for number of runs
-% errors_DA = errors_DA./numRuns;
-% errors_direct = errors_direct./numRuns;
-% errors_none = errors_none./numRuns;
-
-%% plot it
-
-% figure;
-% 
-% set(gcf,'DefaultAxesFontname','helvetica');
-% set(gcf,'DefaultLineColor','r');
-% set(gcf,'DefaultLineMarkerSize',5);
-% set(gcf,'DefaultLineMarkerEdgeColor','k');
-% set(gcf,'DefaultLineMarkerFaceColor','g');
-% set(gcf,'DefaultAxesLineWidth',0.5);
-% set(gcf,'PaperPositionMode','auto');
-% 
-% tmpsym = {'o','s','v','o','s','v'};
-% tmpcol = {'g','b','r','k','c','m'};
-% 
-% % plot grey lines
-% plot(0:window:runTime,errors_DA(1,:),'Color',0.7*[1 1 1]);
-% hold on;
-% %plot(0:window:runTime,errors_direct(1,:),'Color',0.7*[1 1 1]);
-% plot(0:window:runTime,errors_none(1,:),'Color',0.7*[1 1 1]);
-% 
-% % plot some marks
-% i=2;
-% tmph(i) = plot(0:window:runTime,errors_DA(1,:),'Marker',tmpsym{4},'MarkerFaceColor',tmpcol{4},'LineStyle','none');
-% legendcell{i} = 'ETKF';
-% i=1;
-% tmph(i) = plot(0:window:runTime,errors_none(1,:),'Marker',tmpsym{5},'MarkerFaceColor',tmpcol{5},'LineStyle','none');
-% legendcell{i} = 'No Obs';
-% i=3;
-% %tmph(i) = plot(0:window:runTime,errors_none(1,:),'Marker',tmpsym{i},'MarkerFaceColor',tmpcol{i},'LineStyle','none');
-% 
-% %
-% tmpxlab=xlabel('Time $t$', ...
-% 	'fontsize',30,'verticalalignment','top','fontname','helvetica','interpreter','latex');
-% %set(tmpxlab,'position',get(tmpxlab,'position') - [0 .07 0]);
-% 
-% tmpylab=ylabel('RMS Error $\epsilon$','fontsize',30,'verticalalignment','bottom','fontname','helvetica','interpreter','latex');
-% %set(tmpylab,'position',get(tmpylab,'position') + [.05 4 0]);
-% 
-% tmplh = legend(tmph,legendcell,'location','northeast'); %,'No Obs'
-% set(tmplh,'position',get(tmplh,'position')+[-.1 -0.3 0 0])
-% % change font
-% tmplh = findobj(tmplh,'type','text');
-% set(tmplh,'FontSize',30);
-% % remove box:
-% legend boxoff
-% 
-% %xlim([0 25]);
-% 
-% %psprintcpdf_keeppostscript('DA_test_noname011');
-% 
-% %xlim([0 70]);
-% 
-% %psprintcpdf_keeppostscript('DA_test_noname006');
