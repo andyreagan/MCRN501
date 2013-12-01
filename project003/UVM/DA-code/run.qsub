@@ -1,6 +1,5 @@
 # This job needs 1 compute node with 1 processor per node.
 #PBS -l nodes=1:ppn=1
-#PBS -l pmem=4gb,pvmem=6gb
 # It should be allowed to run for up to 24 hours.
 #PBS -l walltime=3:00:00
 # Name of job.
@@ -9,22 +8,13 @@
 #PBS -j oe
 
 ## for a single test (always find something wrong)
-export EXPCOUNT
+echo "experiment count $EXPCOUNT"
 ## tunable parameters
-export NUMRUNS
-export RUNTIME
-
-## part of experiment
-export OBSERROR
-export ERRORDIST
-export SUBSAMPLEALPHA
-exporr RHO
-export OBSVAR
+echo "$NUMRUNS runs"
+echo "$RUNTIME time"
 
 cd /users/a/r/areagan/class/2013/MCRN501/project003/UVM/DA-code
 echo "running a parameter estimation using EKF"
 
-date
-matlab -nodesktop -nosplash -r run_filter
-date
+./run_filter
 

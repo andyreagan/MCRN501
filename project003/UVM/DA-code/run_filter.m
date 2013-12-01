@@ -1,3 +1,4 @@
+function [] = run_filter()
 % run_filter.m
 %
 % test parameter estimation of data assimilation
@@ -7,8 +8,11 @@
 
 clear all
 close all
-addpath(genpath('/Users/andyreagan/work/2013/2013-05data-assimilation/src'))
-addpath(genpath('/users/a/r/areagan/work/2013/data-assimilation/src'))
+%% ADDPATH does not play nice with the MCC compiler
+if (~isdeployed)
+  addpath(genpath('/Users/andyreagan/work/2013/2013-05data-assimilation/src'))
+  addpath(genpath('/users/a/r/areagan/work/2013/data-assimilation/src'))
+end
 
 %% fixed
 dim = 6;
@@ -91,6 +95,7 @@ allAnalyses = allForecasts;
 
 %% now run a lot of them
 for i=1:numRuns
+  disp(i);
   [tmp_EKF_f_vec,tmp_EKF_a_vec] = modelDAinterface(@lorenz63_paramEst,'EKF',obs_pert,0:windowLen:runTime,H,R,windowLen,0,0);
   allForecasts(:,i+1) = tmp_EKF_f_vec(:,end);
   allAnalyses(:,i+1) = tmp_EKF_a_vec(:,end);
