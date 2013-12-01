@@ -8,7 +8,6 @@
 # Join STDERR TO STDOUT.  (omit this if you want separate STDOUT AND STDERR)
 #PBS -j oe
 
-
 ## for a single test (always find something wrong)
 export EXPCOUNT
 ## tunable parameters
@@ -25,6 +24,7 @@ export OBSVAR
 cd /users/a/r/areagan/class/2013/MCRN501/project003/UVM/DA-code
 echo "running a parameter estimation using EKF"
 
+date
 matlab -nodesktop -nosplash -r run_filter
-
+date
 
