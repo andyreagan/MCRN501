@@ -41,7 +41,7 @@ classdef lorenz63_paramEst<handle
 		end %constructor
 		function init(self,varargin)
 			self.x = 10*randn(self.dim,1);
-			self.x(4:6) = [10 0 0;0 20 0; 0 0 40]*rand(3,1); %3*randn(3,1)+[8/3;10;28];
+			self.x(4:6) = 100*eye(3)*rand(3,1); %3*randn(3,1)+[8/3;10;28]; %[10 0 0;0 20 0; 0 0 40]
 			%fprintf('initializing...');
 			
 			% ignore the first argument, if there is one
