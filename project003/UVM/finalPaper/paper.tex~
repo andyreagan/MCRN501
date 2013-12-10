@@ -1,0 +1,125 @@
+\documentclass[onecolumn]{article}
+\usepackage{cite}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{abstract}
+ \usepackage{fullpage}
+ \usepackage{rotating}
+ \usepackage{multicol}
+ \usepackage{multirow}
+ \usepackage{array}
+ \usepackage[abs]{overpic}
+ \setlength\unitlength{1mm}
+ \usepackage{mathptm,graphicx,rotate,color}
+% \title{Spectral Bifurcation Diagrams Reveal Order for many Spatial Dimensions in the Lorenz '96 system\\ Spatial Dimension Exploration leads to Stable Standing Waves in the Lorenz '96 Model\\ }
+ \title{Data Assimilation and Genetic Algorithms for the Parameter Estimation Problem in Simple Climate Models}
+ \author{Morgan R. Frank$^{1}$, Andrew Reagan$^{2}$\\
+ {\footnotesize  Computational Story Lab, Department of Mathematics and Statistics, Vermont Complex Systems Center, Vermont Advanced Computing Core,}\\
+{\footnotesize University of Vermont, Burlington, Vermont, United States of America }\\
+{\footnotesize$^{1}$mrfrank@uvm.edu, $^{2}$andyreagan@andyreagan.com}}
+
+\begin{document}
+\maketitle
+\begin{multicols}{2}
+\begin{abstract}
+	\bf\indent Given observations of an atmospheric phenomenon and a well-principled model of that phenomenon, the parameters for the model must be properly tuned if the model is to mimic the data. We investigate the use of genetic algorithm in comparison to data assimilation as a means of performing parameter estimation when tuning models to data. We compare results while tuning chaotic dynamics, observation noise and frequency, and system dimensionality while performing parameter estimation for the Lorenz '63 and Lorenz '96 systems.
+\end{abstract}
+\section{Introduction}
+\indent Weather forecasting has become an expected part of everyday life in the modern society. Things like air-travel, disaster preparation, and daily planning rely on effective predictions \cite{kerr}. However, predicting future states of the atmosphere proves to be difficult as chaotic systems exhibit sensitive dependence of initial conditions \cite{farmer,orrell3,D+Y}. This hurdle is overcome by utilizing computationally expensive global climate models (GCMs), but scientists working to improve weather forecasting often lack the time or computational power to execute many GCMs. Instead, climate scientists often use simple models that account for particular aspects of the weather forecasting problem. \\
+\indent Edward Lorenz has made major contributions to the fields of dynamical systems and atmospheric prediction \cite{lorenz95,lorenz68,lorenz98}. Two such contributions are the wildly popular Lorenz '63 system \cite{lorenzAttr} and the Lorenz '96 system \cite{lorenz96}. The Lorenz '63 system (L63), which yields the widely known Lorenz Attractor, is a simple three-variable model with highly tunable dynamics, allowing researchers a computationally tractable means to experiment in the predictability of chaotic systems. The Lorenz '96 system (L96) exhibits tunable chaotic dynamics as well, while additionally providing a computationally tractable way to change the system dimensions and tune the accuracy of data observations. Both systems provide interesting and computationally manageable test beds for the parameter estimation problem across several different types of systems. Figure 1 shows example trajectories for each system.\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methods}
+	\subsection{The Lorenz '63 Model}
+
+	\subsection{The Lorenz '96 Model}
+\indent In 1995, Edward Lorenz introduced the following $I$-dimensional model \cite{lorenz95,lorenz98}. The key characteristics of this model include tunable chaotic behavior when subject to enough forcing, and tunable dimensionality. The predecessor to the current model is given by
+ \begin{equation}
+ 	\frac{dx_{i}}{dt}=x_{i-1}(x_{i+1}-x_{i-2})-x_{i}+F
+ \end{equation}
+ where $i=1,2,\dots,I$ and $F$ is the forcing parameter. Each $x_{i}$ represents observations of some atmospheric atmospheric quantity, like temperature, evenly distributed about a given latitude of the globe. This implies a modularity in the indexing that is described by $x_{i+I}=x_{i-I}=x_{i}$. \\
+ \indent This early model failed to produce realistic growth rate of the large-scale errors along with lacking tenability in observation reliability. Lorenz went on to introduce 
+\end{multicols}
+\begin{center}
+	$\begin{array}{cc}
+		\begin{overpic}[width=.5\columnwidth,trim=1cm 6cm 1cm 7cm,clip]{L63Traj}\put(20,40){\colorbox{white}{\fbox{A}}}\end{overpic}&
+		\begin{overpic}[width=.5\columnwidth,trim=3cm 7cm 1cm 6cm,clip]{chaotic_30_5_14}\put(20,40){\colorbox{white}{\fbox{B}}}\end{overpic}\\
+		\begin{overpic}[scale=.4,trim=1cm 5cm 0cm 7cm,clip]{L63_X_exp}\put(15,55){\colorbox{white}{\fbox{C}}}\end{overpic}&
+		\begin{overpic}[scale=.5,trim=3cm 7cm 0cm 8cm,clip]{L96_slow_exp}\put(20,55){\colorbox{white}{\fbox{D}}}\end{overpic}\\
+%		\begin{overpic}\end{overpic}
+%		\begin{overpic}\end{overpic}
+	\end{array}$
+\end{center}
+{\bf\small Figure 1. (A) The popular ``Lorenz Attractor" produced with the Lorenz '63 system. This three-variable system produces a ``butterfly"-like chaotic attractor that is well-known among fractal and chaos enthusiasts. (B) An snapshot of a trajectory of the Lorenz '96 system. Each blue point is a slow oscillator, and the adjacent sections of green represent the fast oscillators coupled with the corresponding slow oscillator. The origin represents the lowest value achieved by any of the slow oscillators on this trajectory. The red line is a cubic spline interpolation of the blue data points. (C) An example trajectory of the $X$ variable from the Lorenz '63 system. (D) An example trajectory for a slow oscillator of the Lorenz '96 system.}\\
+%Consider adding single variable trajectories.
+\begin{multicols}{2}
+a more flexible model in 1996 by coupling two systems similar to the model in equation (1), but differing in time scales. The equations for the Lorenz '96 model \cite{lorenz96} are given as
+ \begin{equation}
+ 	\frac{dx_{i}}{dt}=x_{i-1}(x_{i+1}-x_{i-2})-x_{i}+F-\frac{hc}{b}\displaystyle\sum_{j=1}^{J}y_{(j,i)}
+ \end{equation}\vspace{-1cm}
+ \begin{equation}
+ 	\frac{dy_{(j,i)}}{dt}=cby_{(j+1,i)}(y_{(j-1,i)}-y_{(j+2,i)})-cy_{(j,i)}+\frac{hc}{b}x_{i}
+ \end{equation}
+ where $i=1,2,\dots,I$ and $j=1,2,\dots,J$. The parameters $b$ and $c$ indicate the time scale of solutions to equation (3) relative to solutions of equation (2), and $h$ is the coupling parameter. The coupling term can be thought of as a parameterization of dynamics occurring at a  spatial and temporal scale unresolved by the $x$ variables. Again, each $x_{i}$ represents an atmospheric observation about a latitude that oscillates in slow time, and the set of $y_{(j,i)}$ are a set of $J$ fast time oscillators that act as a damping force on $x_{i}$. The $y$'s exhibit a similar modularity described by $y_{(j+IJ,i)}=y_{(j-IJ,i)}=y_{(j,i)}$.
+ 
+ 	\subsection{Data Assimilation}
+	
+	\subsection{Genetic Algorithm}
+\indent 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{9}
+	\bibitem{kerr}
+	R. A. Kerr. \emph{Weather Forecasts Slowly Clearing Up}. Science 9 November 2012: Vol. 338 no. 6108 pp. 734-737 DOI: 10.1126/science.338.6108.734
+        \bibitem{farmer}
+                Farmer, J. D., and J. J. Sidorowich. \emph{Predicting Chaotic Time Series.} Phys. Rev. Lett. 59(8) (1987): 845-848.
+	\bibitem{orrell3}
+	 D. Orrell, \emph{Role of the Metric in Forecast Error Growth: How Chaotic is
+the Weather?}, Tellus 54A (2002) 350Ð362.
+        \bibitem{D+Y}
+        	C. M. Danforth, J. A. Yorke.  2006. \emph{Making Forecasts for Chaotic Physical Processes.}
+		Physical Review Letters, 96, 144102.
+ 	\bibitem{lorenz95}
+	E.N. Lorenz, \emph{Predictability A problem partly solved}, in: ECMWF Seminar Proceedings on Predictability, Reading, United
+Kingdom, ECMWF, 1995, pp. 118.
+         \bibitem{lorenz68}
+                E. N. Lorenz. \emph{The predictability of a flow which possesses many scales of motion}. {\bf Tellus XXI}, 289 (1968).
+	\bibitem{lorenz98}
+	E.N. Lorenz, K.A. Emanuel, \emph{Optimal sites for supplementary weather observations: simulation with a small model}, J. Atmos. Sci.
+55 (1998) 399Ð414.
+         \bibitem{lorenzAttr}
+                Lorenz, Edward N., 1963: \emph{Deterministic Nonperiodic Flow}. {\it J. Atmos. Sci.}, {\bf 20}, 130.141.
+           \bibitem{lorenz96} 
+                E. N. Lorenz, Proc. Seminar on Predictability 1, 1 (1996).
+        \bibitem{england}
+                R. England. \emph{Error estimates for Runga-Kutta type solutions to systems of ordinary differential equations}. {\it The Computer Journal} (1969) 12 (2): 166-170. doi: 10.1093/comjnl/12.2.166
+%        \bibitem{werneth}
+%                Charles M Werneth et al 2010 Eur. J. Phys. {\bf (31)} 693 doi:10.1088/0143-0807/31/3/027
+        \bibitem{wilks}
+         D. S. Wilks, \emph{Effects of Stochastic Parametrizations in the Lorenz Õ96 System}, Quart. J. Roy. Meteo. Soc. 131 (2005) 389Ð407.
+\end{thebibliography}
+\end{multicols}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
