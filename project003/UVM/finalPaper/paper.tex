@@ -5,14 +5,15 @@
 \usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{abstract}
- \usepackage{fullpage}
- \usepackage{rotating}
- \usepackage{multicol}
- \usepackage{multirow}
- \usepackage{array}
- \usepackage[abs]{overpic}
- \setlength\unitlength{1mm}
- \usepackage{mathptm,graphicx,rotate,color}
+\usepackage{tabularx}
+\usepackage{fullpage}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[abs]{overpic}
+\setlength\unitlength{1mm}
+\usepackage{mathptm,graphicx,rotate,color}
 % \title{Spectral Bifurcation Diagrams Reveal Order for many Spatial Dimensions in the Lorenz '96 system\\ Spatial Dimension Exploration leads to Stable Standing Waves in the Lorenz '96 Model\\ }
  \title{Data Assimilation and Genetic Algorithms for the Parameter Estimation Problem in Simple Climate Models}
  \author{Morgan R. Frank$^{1}$, Andrew Reagan$^{2}$\\
@@ -20,26 +21,44 @@
 {\footnotesize University of Vermont, Burlington, Vermont, United States of America }\\
 {\footnotesize$^{1}$mrfrank@uvm.edu, $^{2}$andrew.reagan@uvm.edu}}
 
+\allowdisplaybreaks
+\widowpenalty=1000000
+\clubpenalty=1000000
+
 \begin{document}
 \maketitle
 \begin{multicols}{2}
 \begin{abstract}
-	\bf\indent Given observations of an atmospheric phenomenon and a well-principled model of that phenomenon, the parameters for the model must be properly tuned if the model is to mimic the data. We investigate the use of genetic algorithm in comparison to data assimilation as a means of performing parameter estimation when tuning models to data. We compare results while tuning chaotic dynamics, observation noise and frequency, and system dimensionality while performing parameter estimation for the Lorenz '63 and Lorenz '96 systems.
+\bf\indent Given observations of an atmospheric phenomenon and a well-principled model of that phenomenon, the parameters for the model must be properly tuned if the model is to mimic the data. We investigate the use of genetic algorithm in comparison to data assimilation as a means of performing parameter estimation when tuning models to data. We compare results while tuning chaotic dynamics, observation noise and frequency, and system dimensionality while performing parameter estimation for the Lorenz '63 and Lorenz '96 systems.
 \end{abstract}
 \section{Introduction}
-\indent Weather forecasts have become an expected part of everyday life in the modern society. Things like air-travel, disaster preparation, and daily planning rely on effective predictions \cite{kerr}. However, predicting future states of the atmosphere proves to be difficult as chaotic systems exhibit sensitive dependence of initial conditions \cite{farmer,orrell3,D+Y}. This hurdle is overcome by utilizing computationally expensive global climate models (GCMs), but scientists working to improve weather forecasting often lack the time or computational power to execute many GCMs. Instead, climate scientists often use simple models that account for particular aspects of the weather forecasting problem. \\
-\indent Edward Lorenz has made major contributions to the fields of dynamical systems and atmospheric prediction \cite{lorenz95,lorenz68,lorenz98}. Two such contributions are the wildly popular Lorenz '63 system \cite{lorenzAttr} and the Lorenz '96 system \cite{lorenz96}. The Lorenz '63 system (L63), which yields the widely known Lorenz Attractor, is a simple three-variable model with highly tunable dynamics, allowing researchers a computationally tractable means to experiment in the predictability of chaotic systems. The Lorenz '96 system (L96) exhibits tunable chaotic dynamics as well, while additionally providing a computationally tractable way to change the system dimensions and tune the accuracy of data observations. Both systems provide interesting and computationally manageable test beds for the parameter estimation problem across several different types of systems. Figure 1 shows example trajectories for each system.\\
+\indent Weather forecasts have become an expected part of everyday life in the modern society.
+Things like air-travel, disaster preparation, and daily planning rely on accurate predictions \cite{kerr}.
+However, predicting future states of the atmosphere proves to be difficult, as chaotic systems exhibit sensitive dependence of initial conditions, and the underlying processes in weather are  known to be chaotic \cite{farmer,orrell3,D+Y}.
+This hurdle is overcome by utilizing computationally expensive global forecasting systems (GFS) for prediction and advanced methods for initial condition determination, but scientists working to improve weather forecasting often lack the time or computational power to execute many high resolution GFS experiments.
+Instead, climate scientists often use simple models that account for particular aspects of the weather forecasting problem.\\
+\indent Edward Lorenz has made major contributions to the fields of dynamical systems and atmospheric prediction \cite{lorenz95,lorenz68,lorenz98}.
+Two such contributions are the wildly popular Lorenz '63 system \cite{lorenzAttr} and the Lorenz '96 system \cite{lorenz96}.
+The Lorenz '63 system (L63), which yields the widely known Lorenz Attractor, is a simple three-variable model with highly tunable dynamics, allowing researchers a computationally tractable means to experiment in the predictability of chaotic systems.
+The Lorenz '96 system (L96) exhibits tunable chaotic dynamics as well, while additionally providing a computationally tractable way to change the system dimensions and tune the accuracy of data observations.
+Both systems provide interesting and computationally manageable test beds for the parameter estimation problem across several different types of systems.
+Figure 1 shows example trajectories for each system.\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
-	\subsection{The Lorenz '63 Model}
+\subsection{The Lorenz '63 Model}
+In 1962, Barry Saltzmann attempted to model convection in a Rayleigh-B\'{e}rnard cell  by reducing the equations of motion into their core processes \cite{saltzman1962finite}.
+Then in 1963 Edward Lorenz reduced this system ever further to 3 equations, leading to his landmark discovery of deterministic non-periodic flow \cite{lorenz1963}.
+This system, which we will call the Lorenz 63 system, exhibits sensitive dependence on initial conditions, meaning that small errors in an approximation will lead to exponential error growth.
+These equations have since been the subject of intense study and have changed the way we view prediction and determinism, remaining the simple system of choice for examining nonlinear behaivor today \cite{kalnay20074}.
+The three equations are:
+\begin{align*}
+\frac{dx}{dt} &= \sigma (y-x)\\
+\frac{dy}{dt} &= \rho x - y -xz \\
+\frac{dz}{dt} &= xy -  \beta z .\end{align*}
 
-	\subsection{The Lorenz '96 Model}
-\indent In 1995, Edward Lorenz introduced the following $I$-dimensional model \cite{lorenz95,lorenz98}. The key characteristics of this model include tunable chaotic behavior when subject to enough forcing, and tunable dimensionality. The predecessor to the current model is given by
- \begin{equation}
- 	\frac{dx_{i}}{dt}=x_{i-1}(x_{i+1}-x_{i-2})-x_{i}+F
- \end{equation}
- where $i=1,2,\dots,I$ and $F$ is the forcing parameter. Each $x_{i}$ represents observations of some atmospheric atmospheric quantity, like temperature, evenly distributed about a given latitude of the globe. This implies a modularity in the indexing that is described by $x_{i+I}=x_{i-I}=x_{i}$. \\
- \indent This early model failed to produce realistic growth rate of the large-scale errors along with lacking tenability in observation reliability. Lorenz went on to introduce 
+The cannonical choice of $\sigma = 10, \beta = 8/3$ and $\rho = 28$ produce the well known butterfly attractor, and to adjust the strength of nonlinearity (chaos) we tune the $\rho$ parameter.
+
+
 \end{multicols}
 \begin{center}
 	$\begin{array}{cc}
@@ -54,6 +73,43 @@
 {\bf\small Figure 1. (A) The popular ``Lorenz Attractor" produced with the Lorenz '63 system. This three-variable system produces a ``butterfly"-like chaotic attractor that is well-known among fractal and chaos enthusiasts. (B) An snapshot of a trajectory of the Lorenz '96 system. Each blue point is a slow oscillator, and the adjacent sections of green represent the fast oscillators coupled with the corresponding slow oscillator. The origin represents the lowest value achieved by any of the slow oscillators on this trajectory. The red line is a cubic spline interpolation of the blue data points. (C) An example trajectory of the $X$ variable from the Lorenz '63 system. (D) An example trajectory for a slow oscillator of the Lorenz '96 system.}\\
 %Consider adding single variable trajectories.
 \begin{multicols}{2}
+
+\end{multicols}
+\begin{center}
+\begin{tabular}{lll}
+  \hline
+  Parameter & Values Explored & Interpretation, if any\\
+  \hline
+  \hline
+  Observed Variables (63 Only) & $[x_1,$all] & Limited observations\\
+  \hline
+  Observational Noise & Normal in [0,.01,.05,.1,.25,.5,1,2] & Measurement and representativeness errors\\
+  ~~~~~~~~~~~~~~~~~~~ & Uniform in [0,.5,2,4,6,8,10] & \\
+  \hline
+  Nonlinearity & $\rho$ in [22,28,35] or $I$ in [4,8,10,15] & Chaotic behavior\\
+  \hline
+  Subsampled observations & [1,5,25,50] & Infrequent observations\\
+  \hline
+\end{tabular}
+\vspace{3mm}
+
+{\bf\small Table 1: Experimental parameter choices on which we test the performance of Data Assimilation and a Genetic Algorithm for fitting model parameters.}
+\end{center}
+\begin{multicols}{2}
+
+\subsection{The Lorenz '96 Model}
+\indent In 1995, Edward Lorenz introduced the following $I$-dimensional model \cite{lorenz95,lorenz98}.
+The key characteristics of this model include tunable chaotic behavior when subject to enough forcing, and tunable dimensionality.
+The predecessor to the current model is given by
+\begin{equation}
+\frac{dx_{i}}{dt}=x_{i-1}(x_{i+1}-x_{i-2})-x_{i}+F
+\end{equation}
+where $i=1,2,\dots,I$ and $F$ is the forcing parameter.
+Each $x_{i}$ represents observations of some atmospheric atmospheric quantity, like temperature, evenly distributed about a given latitude of the globe.
+This implies a modularity in the indexing that is described by $x_{i+I}=x_{i-I}=x_{i}$. \\
+\indent This early model failed to produce realistic growth rate of the large-scale errors along with lacking tenability in observation reliability.
+Lorenz went on to introduce 
+
 a more flexible model in 1996 by coupling two systems similar to the model in equation (1), but differing in time scales. The equations for the Lorenz '96 model \cite{lorenz96} are given as
  \begin{equation}
  	\frac{dx_{i}}{dt}=x_{i-1}(x_{i+1}-x_{i-2})-x_{i}+F-\frac{hc}{b}\displaystyle\sum_{j=1}^{J}y_{(j,i)}
@@ -63,22 +119,134 @@ a more flexible model in 1996 by coupling two systems similar to the model in eq
  \end{equation}
  where $i=1,2,\dots,I$ and $j=1,2,\dots,J$. The parameters $b$ and $c$ indicate the time scale of solutions to equation (3) relative to solutions of equation (2), and $h$ is the coupling parameter. The coupling term can be thought of as a parameterization of dynamics occurring at a  spatial and temporal scale unresolved by the $x$ variables. Again, each $x_{i}$ represents an atmospheric observation about a latitude that oscillates in slow time, and the set of $y_{(j,i)}$ are a set of $J$ fast time oscillators that act as a damping force on $x_{i}$. The $y$'s exhibit a similar modularity described by $y_{(j+IJ,i)}=y_{(j-IJ,i)}=y_{(j,i)}$.
  
- 	\subsection{Data Assimilation}
+\subsection{Data Assimilation}
+
+Areas as disparate as quadcopter stabilization \cite{achtelik2009visual} to the tracking of ballistic missle re-entry \cite{siouris1997tracking} use data assimilation.
+The purpose of data assimilation in weather prediction is defined by Talagrand as ``using all the available information, to determine as accurately as possible the state of the atmospheric (or oceanic) flow.'' \cite{talagrand1997assimilation}
+The data assimilation algorithm that we use here, the Kalman filter, was originally implemented in the navigation system of Apollo program \cite{kalman1961new,savely1972}.
+
+Data assimilation algorithms consist of a 3-part cycle: predict, observe, and assimilate.
+Formally, the data assimilation problem is solved by minimizing the initial condition error in the presence of specific constraints.
+The prediction step involves making a prediction of the future state of the system, as well as the error of the model, in some capacity.
+Observing systems come in many flavors: rawindsomes and satellite irradiance for the atmosphere, temperature and velocity reconstruction from sensors in experiments, and sampling the market in finance.
+Assimilation is the combination of these observations and the predictive model in such a way that minimizes the error of the initial condition state, which we denote the analysis.
+
+In addition to determining the initial conditions, we can extend the Extended Kalman Filter (EKF) to determine the model parameters.
+This is accomplised by considering the model parameters as variables of the model itself, with their differential equation being equal to 0, since they do not change with the solution.
+The value of this consideration is that the covariance of the model variables and model parameters is now included in the Tangent Linear Model (the Jacobian of the extended analytical system) and hence is updated by the Kalman gain matrix.
+
+The formulation of the filter we employ is the standard formulation, since the incorporation of parameters into the estimation is independent of the filter itself.
+Using the notation of Kalnay \cite{kalnay2003}, this amounts to making a forecast with the nonlinear model $M$ (either Lorenz 63 or Lorenz 96 in this study), and updating the error covariance matrix $\mathbf{P}$ with the TLM $L$, and adjoint model $L^T$
+\begin{align*} \mathbf{x}^f (t_i) &= M _{i-1} [\mathbf{x} ^a (t_{i-1} ) ]\\
+\mathbf{P}^f (t_i ) &= L_{i-1} \mathbf{P}^a (t_{i-1} ) L^T _{i-1} + \mathbf{Q} (t_{i-1} ) \end{align*}
+where $\mathbf{Q}$ is the noise covariance matrix (model error).
+In the experiments here, $\mathbf{Q} = 0$ since our model is perfect.
+In NWP, $\mathbf{Q}$ must be approximated, e.g. using statistical moments on the analysis increments \cite{danforth2007estimating,li2009accounting}.
+The analysis step is then written as (for $H$ the observation operator):
+\begin{align} \mathbf{x}^a (t_i ) &= \mathbf{x}^f (t_i) + \mathbf{K}_i \mathbf{d}_i\\
+\mathbf{P}^a (t_i) &= (\mathbf{I} - \mathbf{K}_i \mathbf{H}_i )\mathbf{P}^f (t_i) \end{align}
+where
+\[ \mathbf{d}_i = \mathbf{y}_i^o - \mathbf{H}[x^f (t_i) ] \]
+is the innovation. The Kalman gain matrix is computed to minimize the analysis error covariance $P^a _i$ as
+\[ \mathbf{K}_i = \mathbf{P}^f (t_i) \mathbf{H}_i ^T [ \mathbf{R}_i + \mathbf{H}_i \mathbf{P}^f (t_i) \mathbf{H}^T ] ^{-1} \]
+where $\mathbf{R}_i$ is the observation error covariance.
+Since we are making observations of the truth with known standard deviation $\mathbf{\epsilon}$, the observational error covariance matrix $\mathbf{R}$ is a diagonal matrix with the standard deviatoin $\epsilon$ along the diagonal.
+This information is an additional assumption, we could however not use this information and simply sample $\epsilon$ as a part of the experiment.
+The most difficult, and most computationally expensive, part of the EKF is deriving and integrating the TLM.
+Here we use a differentiated Runge-Kutta scheme of 2-nd order to accurately integrate the TLM.
+For more details on this implemenation, see Reagan \cite{reagan2013}.
+
 	
-	\subsection{Genetic Algorithm}
-\indent 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Genetic Algorithm}
+
+
+\subsection{Experiment}
+
+For both of the systems, we study the performance of our parameter estimation scheme under varying observational noise, observational density, observational frequency, nonlinearity and dimension.
+This amounts to 4 (Lorenz 63) and 5 (Lorenz 96) dimensions of the experiment, and we outline the specific choices for each experiment in Table 1. %%\ref{table:experimentParms}.
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{9}
+
+        \bibitem{achtelik2009visual}
+        Achtelik, M., T.~Zhang, K.~Kuhnlenz, and M.~Buss (2009).
+        \newblock Visual tracking and control of a quadcopter using a stereo camera
+          system and inertial sensors.
+        \newblock In {\em Mechatronics and Automation, 2009. ICMA 2009. International
+          Conference on}, pp.\	2863--2869. IEEE.
+        
+        \bibitem{siouris1997tracking}
+        Siouris, G.~M., G.~Chen, and J.~Wang (1997).
+        \newblock Tracking an incoming ballistic missile using an extended interval
+          kalman filter.
+        \newblock {\em Aerospace and Electronic Systems, IEEE Transactions on\/}~{\em
+          33\/}(1), 232--240.
+        
+        \bibitem{talagrand1997assimilation}
+        Talagrand, O. (1997).
+        \newblock Assimilation of observations, an introduction.
+        \newblock {\em JOURNAL-METEOROLOGICAL SOCIETY OF JAAN SERIES 2\/}~{\em 75},
+          81--99.
+        
+        \bibitem{kalman1961new}
+        Kalman, R. and R.~Bucy (1961).
+        \newblock New results in linear prediction and filtering theory.
+        \newblock {\em Trans. AMSE J. Basic Eng. D\/}~{\em 83}, 95--108.
+        
+        \bibitem{savely1972}
+        Savely, R., B.~Cockrell, , and S.~Pines (1972).
+        \newblock Apollo experience report - onboard navigational and alignment
+          software.
+        \newblock {\em Technical Report\/}.
+        
+        \bibitem{kalnay2003}
+        Kalnay, E. (2003).
+        \newblock {\em Atmospheric modeling, data assimilation, and predictability}.
+        \newblock Cambridge university press.
+        
+        \bibitem{danforth2007estimating}
+        Danforth, C.~M., E.~Kalnay, and T.~Miyoshi (2007).
+        \newblock Estimating and correcting global weather model error.
+        \newblock {\em Monthly weather review\/}~{\em 135\/}(2), 281--299.
+        
+        \bibitem{li2009accounting}
+        Li, H., E.~Kalnay, T.~Miyoshi, and C.~M. Danforth (2009).
+        \newblock Accounting for model errors in ensemble data assimilation.
+        \newblock {\em Monthly Weather Review\/}~{\em 137\/}(10), 3407--3419.
+
+        \bibitem{reagan2013}
+        Reagan, A (2013).
+        \newblock Predicting Flow Reversals in a Computational Fluid Dyanmics Simulated Thermosyphon Using Data Assimilatoin.
+        \newblock University of Vermont Master's Thesis, {\em arXiv:1312.2142 [math.DS]}.
+
+        \bibitem{kalnay20074}
+        Kalnay, E., H.~Li, T.~Miyoshi, S.-C. YANG, and J.~BALLABRERA-POY (2007).
+        \newblock 4-d-var or ensemble kalman filter?
+        \newblock {\em Tellus A\/}~{\em 59\/}(5), 758--773.
+
+        \bibitem{lorenz1963}
+        Lorenz, E.~N. (1963).
+        \newblock Deterministic nonperiodic flow.
+        \newblock {\em Journal of the atmospheric sciences\/}~{\em 20\/}(2), 130--141.
+
+        \bibitem{saltzman1962finite}
+        Saltzman, B. (1962).
+        \newblock Finite amplitude free convection as an initial value problem-i.
+        \newblock {\em Journal of the Atmospheric Sciences\/}~{\em 19\/}(4), 329--341.
+
 	\bibitem{kerr}
 	R. A. Kerr. \emph{Weather Forecasts Slowly Clearing Up}. Science 9 November 2012: Vol. 338 no. 6108 pp. 734-737 DOI: 10.1126/science.338.6108.734
+
         \bibitem{farmer}
                 Farmer, J. D., and J. J. Sidorowich. \emph{Predicting Chaotic Time Series.} Phys. Rev. Lett. 59(8) (1987): 845-848.
+
 	\bibitem{orrell3}
 	 D. Orrell, \emph{Role of the Metric in Forecast Error Growth: How Chaotic is
 the Weather?}, Tellus 54A (2002) 350Ð362.
