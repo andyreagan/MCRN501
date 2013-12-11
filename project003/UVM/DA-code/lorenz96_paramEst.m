@@ -21,15 +21,15 @@ classdef lorenz96_paramEst<handle
 	properties
 		%basics
 		x
-		tstep = .01;
-		dim = 6;
+		tstep = .001;
+		dim = 20;
 		time = 0;
 		window = 20;
 		
 		params = {};
 		%for the TLM
 		%this code only works for rk2prime...
-		TLMmethod = 'rk2prime'; % 'kam','explicit'
+		TLMmethod = 'rk4prime'; % 'kam','explicit'
 		p_f
 		DIR
 	end % properties
@@ -61,7 +61,7 @@ classdef lorenz96_paramEst<handle
 			% run the case
 			%fprintf('running...');
 			
-			[~,tmp_x_f] = rk2(@lorenz96_model,self.params,self.time+[0,self.window],self.x,self.tstep);
+			[~,tmp_x_f] = rk4(@lorenz96_model,self.params,self.time+[0,self.window],self.x,self.tstep);
 			self.x = tmp_x_f(end,:)';
 			self.time = self.time+self.window;
 			%fprintf('done\n');
@@ -77,22 +77,50 @@ classdef lorenz96_paramEst<handle
 	end % methods
 end % classdef
 
-function [xprime] = lorenz96_model(~,x,~)
-% the Lorenz '96 system, as a function
-%
-% INPUT
-%   t  - time, scalar
-%   y  - column vector solution
+function dstate=lorenz96_model(~,state,~)
+global I;global J;
+h=state(end-3);c=state(end-2);b=state(end-1);F=state(end);
+state=reshape(state(1:end-4),I,J+1);
+IJ=I*J;
 
-b = x(4); s = x(5); r = x(6);
-xprime = [s*(x(2)-x(1));r*x(1)-x(2)-x(1)*x(3);x(1)*x(2)-b*x(3);0;0;0];
+X=state(:,1);
 
+state(:,1)=X(mod(-1:I-2,I)+1).*(X(mod(1:I,I)+1)-X(mod(-2:I-3,I)+1))-X+F*ones(I,1)-...
+    (h*c/b)*sum(state(:,2:end),2);
+
+IJ=I*J;
+Ys=zeros(1,IJ);
+Xs=zeros(1,IJ);
+%Ys is the outer ring of fast oscillators
+for i=1:I
+    Ys((i-1)*J+1:i*J)=state(i,2:end);
+    Xs((i-1)*J+1:i*J)=X(i,1)*ones(1,J);
+end;
+
+Ys=-c*b*Ys(mod(1:IJ,IJ)+1).*(Ys(mod(2:IJ+1,IJ)+1)-Ys(mod(-1:IJ-2,IJ)+1))...
+    -c*Ys+(h*c/b)*Xs;
+
+for i=1:I
+    state(i,2:end)=Ys((i-1)*J+1:i*J);
+end;
+
+dstate=[reshape(state,numel(state)),1,0*(1:4)];
 end
 
 
 function [p_f] = lorenz96_TLM(method,t,window_len,x_a,tstep,p_a,params)
 
 switch method
+    case 'rk4prime'
+		%%%%%%%%%%%%%%%%%
+		%% rk4 prime method
+		
+		% integrate the foward model
+		[~,~,L] = rk4prime(@lorenz96_model,@lorenzJ_paramEst,params,[t t+window_len],x_a,tstep);
+		
+		% error covariance from model
+		p_f = L*p_a*L';
+    
 	case 'rk2prime'
 		%%%%%%%%%%%%%%%%%
 		%% rk2 prime method
