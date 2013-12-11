@@ -31,6 +31,9 @@ obsVarLen = checkenv('OBSVAR',3);
 obsVar = 1:obsVarLen;
 expCount = checkenv('EXPCOUNT',1);
 
+fprintf('save file is\n');
+fprintf('data/%s_%g_%g_%g_%g_%g_%g_%g_forecastEnds.csv\n',obs_error_type,obs_error_std,numRuns,runTime,windowAlpha,rho,obsVarLen,expCount);
+
 %% set things based off of this
 windowLen = windowAlpha*tStep;
 modelname = 'lorenz63';
@@ -95,7 +98,7 @@ allAnalyses = allForecasts;
 
 %% now run a lot of them
 for i=1:numRuns
-  disp(i);
+  fprintf('on numRun %g\n',i);
   [tmp_EKF_f_vec,tmp_EKF_a_vec] = modelDAinterface(@lorenz63_paramEst,'EKF',obs_pert,0:windowLen:runTime,H,R,windowLen,0,0);
   allForecasts(:,i+1) = tmp_EKF_f_vec(:,end);
   allAnalyses(:,i+1) = tmp_EKF_a_vec(:,end);
@@ -105,6 +108,9 @@ end
 %% forecasts
 csvwrite(sprintf('data/%s_%g_%g_%g_%g_%g_%g_%g_forecastEnds.csv',obs_error_type,obs_error_std,numRuns,runTime,windowAlpha,rho,obsVarLen,expCount),allForecasts);
 csvwrite(sprintf('data/%s_%g_%g_%g_%g_%g_%g_%g_analysisEnds.csv',obs_error_type,obs_error_std,numRuns,runTime,windowAlpha,rho,obsVarLen,expCount),allAnalyses);
+
+fprintf('success\n');
+
 
 
 

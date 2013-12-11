@@ -23,7 +23,7 @@ cd /users/a/r/areagan/class/2013/MCRN501/project003/UVM/DA-code
 export NUMRUNS=100
 export RUNTIME=200
 ## part of experiment
-export RHO=22
+export RHO=35
 ## for normal error
 ERRORDIST="normal"
 export ERRORDIST
@@ -39,7 +39,13 @@ do
       for OBSVAR in 1 3
       do
 	export OBSVAR
-	qsub -q shortq -V run.qsub
+	FILENAME="data/${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${RHO}_${OBSVAR}_${EXPCOUNT}_forecastEnds.csv"
+	echo $FILENAME
+	if [ -f $FILENAME ]; then
+	  echo "already done"
+	else
+	  qsub -q workq -V run.qsub
+	fi
       done
     done
   done
@@ -59,8 +65,31 @@ do
       for OBSVAR in 1 3
       do
 	export OBSVAR
-	qsub -q shortq -V run.qsub
+	FILENAME="data/${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${RHO}_${OBSVAR}_${EXPCOUNT}_forecastEnds.csv"
+	echo $FILENAME
+	if [ -f $FILENAME ]; then
+	  echo "already done"
+	else
+	  qsub -q workq -V run.qsub
+	fi
       done
     done
   done
 done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

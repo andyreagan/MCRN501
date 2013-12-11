@@ -1,7 +1,7 @@
 # This job needs 1 compute node with 1 processor per node.
 #PBS -l nodes=1:ppn=1
 # It should be allowed to run for up to 24 hours.
-#PBS -l walltime=3:00:00
+#PBS -l walltime=10:00:00
 # Name of job.
 #PBS -N openFoamDA
 # Join STDERR TO STDOUT.  (omit this if you want separate STDOUT AND STDERR)
@@ -12,6 +12,14 @@ echo "experiment count $EXPCOUNT"
 ## tunable parameters
 echo "$NUMRUNS runs"
 echo "$RUNTIME time"
+echo "RHO=$RHO"
+echo "ERRORDIST=$ERRORDIST"
+echo "EXPCOUNT=$EXPCOUNT"
+echo "OBSERROR=$OBSERROR"
+echo "SUBSAMPLEALPHA=$SUBSAMPLEALPHA"
+echo "OBSVAR=$OBSVAR"
+
+echo "output is in data/${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${RHO}_${OBSVAR}_${EXPCOUNT}_forecastEnds.csv"
 
 cd /users/a/r/areagan/class/2013/MCRN501/project003/UVM/DA-code
 echo "running a parameter estimation using EKF"
