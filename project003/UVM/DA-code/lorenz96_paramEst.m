@@ -22,14 +22,15 @@ classdef lorenz96_paramEst<handle
 		%basics
 		x
 		tstep = .001;
-		dim = 20;
+        I = 10; % slow oscillators
+        J = 4; % fast guys per slow
+		dim = I*(J+1)+4; % add the parameters h,b,c,F
 		time = 0;
-		window = 20;
+		window = 1;
 		
 		params = {};
 		%for the TLM
-		%this code only works for rk2prime...
-		TLMmethod = 'rk4prime'; % 'kam','explicit'
+		TLMmethod = 'rk4prime';
 		p_f
 		DIR
 	end % properties
@@ -38,9 +39,11 @@ classdef lorenz96_paramEst<handle
 			%intialize the class
 		end %constructor
 		function init(self,varargin)
-			self.x = 10*randn(self.dim,1);
-			self.x(4:6) = 100*eye(3)*rand(3,1); %3*randn(3,1)+[8/3;10;28]; %[10 0 0;0 20 0; 0 0 40]
-			%fprintf('initializing...');
+            self.dim = self.I*(self.J+1)+4;
+            self.params = {self.I,self.J};
+            
+			self.x = rand(self.dim,1);
+			self.x(end-3:end) = 100*rand(4,1);
 			
 			% ignore the first argument, if there is one
 			if nargin > 2
@@ -48,14 +51,12 @@ classdef lorenz96_paramEst<handle
 				self.x = varargin{2};
 			else
 				% generating climatological IC
-				tmpwindow = self.window; self.window = randi(100,1);
+				tmpwindow = self.window; self.window = randi(10,1);
 				tmptime = self.time; self.time = 0;
-				self.x(1:3) = [-12.6480;-13.9758;30.9758]+.1*randn(3,1);
 				self.run();
 				self.window = tmpwindow;
 				self.time = tmptime;
-			end
-			%fprintf('done\n');
+            end
 		end %init
 		function run(self,varargin)
 			% run the case
@@ -77,8 +78,9 @@ classdef lorenz96_paramEst<handle
 	end % methods
 end % classdef
 
-function dstate=lorenz96_model(~,state,~)
-global I;global J;
+function dstate=lorenz96_model(~,state,params)
+I = params{1};
+J = params{2};
 h=state(end-3);c=state(end-2);b=state(end-1);F=state(end);
 state=reshape(state(1:end-4),I,J+1);
 IJ=I*J;
@@ -130,36 +132,11 @@ switch method
 		
 		% error covariance from model
 		p_f = L*p_a*L';
-		
-	case 'kam'
-		%%%%%%%%%%%%%%%%%%%%%%
-		%% method from Kam's paper
-		
-		% compute the Jacobian of Lorenz 96
-		lorenzJac = @(y,params) [-params{2},params{2},0;-y(3)+params{3},-1,-y(1);y(2),y(1),-params{1}];
-		J = lorenzJac(x_a,params);
-		
-		dim = length(x_a);
-		p_f = ones(dim);
-		for i=1:dim
-			[~,tmp] = rk2(@(~,y,params) J*y,params,[t t+window_len],p_a(:,i),tstep);
-			p_f(:,i) = tmp(end,:)';
-		end
-		
-	case 'explicit'
-		%%%%%%%%%%%%%%%%%%%%
-		%% explicit RK2 derivative method
-		
-		% compute the LTM from the RK2 discretization of model directly
-		[~,~,L] = lorenzRK2explicit([t t+window_len],x_a,tstep);
-		
-		% error covariance from model
-		p_f = L*p_a*L';
 end
 end
 
 
-function [J] = lorenzJ_paramEst(~,xvec,~)
+function [J] = lorenzJ_paramEst(~,state,params)
 
 % the Lorenz '96 system, as a function
 %
@@ -170,13 +147,29 @@ function [J] = lorenzJ_paramEst(~,xvec,~)
 
 % make these human
 %b = params(1); s = params(2); r = params(3);
-b = xvec(4); s = xvec(5); r = xvec(6);
-x = xvec(1); y = xvec(2); z = xvec(3);
+b = state(4); s = state(5); r = state(6);
+x = state(1); y = state(2); z = state(3);
 
 % normal
-J = [-s,s,0;-z+r,-1,-x;y,x,-b];
+% J = [-s,s,0;-z+r,-1,-x;y,x,-b];
 % with parameters
 J = zeros(6);
 J(1:3,:) = [-s s 0 0 y-x 0; r-z -1 -x 0 0 x; y x -b -z 0 0];
+
+% for L96
+I = params{1};
+J = params{2};
+h=state(end-3);c=state(end-2);b=state(end-1);F=state(end);
+state=reshape(state(1:end-4),I,J+1);
+
+X=state(:,1);
+dim=I;
+J=-1*eye(dim);
+for i=1:dim
+    J(i,myMod(i-2,dim))=-X(myMod(i-1,dim));
+    J(i,myMod(i-1,dim))=X(myMod(i+1,dim))-X(myMod(i-2,dim));
+    J(i,myMod(i+1,dim))=X(myMod(i-1,dim));
+end;
+end
 
 end
