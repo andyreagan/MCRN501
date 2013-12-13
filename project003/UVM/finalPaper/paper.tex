@@ -159,6 +159,12 @@ For more details on this implemenation, see Reagan \cite{reagan2013}.
 	
 \subsection{Genetic Algorithm}
 
+\indent The area of genetic algorithms (GAs) is a prominent area of research \cite{GA1,GA2} with applications in several areas of research, including bankruptcy modeling \cite{Shin2002321}, calibrating water runoff models \cite{WRR}, and spectral data analysis \cite{CEM}. One key feature of GAs is that no knowledge of the model being fitted is required. To demonstrate the availability and robustness of this algorithm, we proceed by utilizing Matlab's built-in GA function, called ``{\it ga.m}", with essentially no alterations from the default options (i.e. the defaults for ``{\it gaoptimset.m}"). The only assumption of note is that we assume parameters are positive real-values. Like other evolutionary algorithms, GA is applicable whenever a problem can be phrased in the biological evolution paradigm. The major hallmarks of this paradigm include identifying a population of genes and subjecting that population to crossover, genetic mutation, and selection pressure. The ``indivi!
+ duals" in the population of genes for our experiments will be real-valued vectors where each entry in a vector represents a parameter choice, and vectors are of the same length as the number of parameters being recovered. \\
+\indent Selection pressure is imposed on our population through a fitness-evaluation function that evaluates the ``fitness" of an individual by the the root-mean square error of a model integration with the parameter choices encoded in the individual vector who's fitness is being evaluated. The root-mean square error is calculated at each time $t$ that we have observation data. Notice that lower fitness is better in this context. Furthermore, we are attempting to recover parameters for chaotic systems; thus, there may exist brief intervals where the integration fits the observed data simply by chance. This has to do with the unpredictability of chaotic systems  over long integration times, and the bounded nature of the chaotic attractors in this study. We address this concern by restarting our integration at unit model-time intervals based on the observation data.\\
+\indent We use stochastic uniform selection to select two individuals at a time based on their fitness to undergo single-point crossover. Single-point crossover begins by randomly selecting a  vector index. The two ``parents" undergoing crossover are replaced in the population by two ``children". The first child is conceived by taking the indices from the first parent up to the selected index. The remaining indices are filled from the second parent. The second child is created following the same process where the parents' roles are switched. This process allows the population to converge on good parameter choices since a good parameter choice will yield favorable fitness scores. Fit individuals will have an increased chance of being selected to pass on genetic material to the next generation.\\
+\indent Genetic mutation is the mechanisms that allows the population to further explore parameter space. When an individual is subject to mutation, a vector index is selected randomly and a randomly selected small real-value is added to or subtracted from the value currently stored at that index of the individual. Large population sizes along with a high mutation rate (i.e. the probability of being subject to mutation) encourage robust sampling of parameter space.\\
+\indent The above mentioned mechanisms are highly tunable in that mutation, crossover, fitness evaluation, and selection can all be achieved through a variety of different methods. The key is to pick these methods to fit the problem you are addressing. The GA is initialized by randomly generating a population of real-valued vectors of the same length as the number of parameters we are trying to recover. Each individual is then assessed for fitness. Now individuals are selected for reproduction based on their fitness and other individuals are subject to genetic mutation. The two fittest individuals from the population are allowed to remain unchanged. This process yields the population for the next generation of individuals. We iterate this procedure for a prescribed number of generations, or until the population-wide fitness stops changing with successive generations. Figure 2 shows examples for some of these mechanisms along with a snap shot from a GA experiment attempting to recover parameters for L63.
 
 \subsection{Experiment}
 
@@ -173,6 +179,21 @@ The experiments were chosen to mimic realisitic conditions under which simple mo
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
+
+\clearpage
+\begin{center}
+	\includegraphics[scale=.34]{GA_exmaple.png}\\
+	{\flushleft Example GA experiment:}\\
+	$\begin{array}{cc}
+		\fbox{\includegraphics[width=.27\columnwidth]{sample.pdf}}&
+		\hspace{-.3cm}\fbox{\includegraphics[width=.27\columnwidth]{sample2.pdf}}\\
+		\fbox{\includegraphics[width=.27\columnwidth]{sample3.pdf}}&		
+		\hspace{-.3cm}\fbox{\includegraphics[width=.27\columnwidth]{sample4.pdf}}				
+	\end{array}$
+\end{center}
+{\bf\small Figure 2. (Top) A cartoon demonstrating the flow of control for GA execution. The population of random real-valued vectors is initialized, and each individual has its fitness assessed. With some probability individuals are selected for single-point crossover or mutation. The children from these processes are collected into the new population. This process is iterated for a prescribed number of generations or until iteration fails to yield improvement. (Bottom) An example illustrating the improvement in parameter estimation made by the GA when attempting to recover the parameters ($\sigma=10,b=8/3,R=28$) over 100 generations. The observed data (truth) is in \textcolor{blue}{blue}, while the trajectory yielded from the best guess at the true parameters is provided in \textcolor{red}{red}. From left to right, we show the best solution after 10, 35, 52, and 100 generations. We see that at 100 generations, the best guess at the true parameters is reasonably close to th!
+ e correct answer ($\sigma=9.99711,b=2.66688,R=28.0004$)}\\
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{9}
@@ -251,7 +272,7 @@ The experiments were chosen to mimic realisitic conditions under which simple mo
 
 	\bibitem{orrell3}
 	 D. Orrell, \emph{Role of the Metric in Forecast Error Growth: How Chaotic is
-the Weather?}, Tellus 54A (2002) 350–362.
+the Weather?}, Tellus 54A (2002) 350√ê362.
         \bibitem{D+Y}
         	C. M. Danforth, J. A. Yorke.  2006. \emph{Making Forecasts for Chaotic Physical Processes.}
 		Physical Review Letters, 96, 144102.
@@ -262,7 +283,7 @@ Kingdom, ECMWF, 1995, pp. 118.
                 E. N. Lorenz. \emph{The predictability of a flow which possesses many scales of motion}. {\bf Tellus XXI}, 289 (1968).
 	\bibitem{lorenz98}
 	E.N. Lorenz, K.A. Emanuel, \emph{Optimal sites for supplementary weather observations: simulation with a small model}, J. Atmos. Sci.
-55 (1998) 399–414.
+55 (1998) 399√ê414.
          \bibitem{lorenzAttr}
                 Lorenz, Edward N., 1963: \emph{Deterministic Nonperiodic Flow}. {\it J. Atmos. Sci.}, {\bf 20}, 130.141.
            \bibitem{lorenz96} 
@@ -272,9 +293,89 @@ Kingdom, ECMWF, 1995, pp. 118.
 %        \bibitem{werneth}
 %                Charles M Werneth et al 2010 Eur. J. Phys. {\bf (31)} 693 doi:10.1088/0143-0807/31/3/027
         \bibitem{wilks}
-         D. S. Wilks, \emph{Effects of Stochastic Parametrizations in the Lorenz ’96 System}, Quart. J. Roy. Meteo. Soc. 131 (2005) 389–407.
+         D. S. Wilks, \emph{Effects of Stochastic Parametrizations in the Lorenz √ï96 System}, Quart. J. Roy. Meteo. Soc. 131 (2005) 389√ê407.
+
+	\bibitem{GA1}
+		J. Horn, N. Nafpliotis, and D.E. Goldberg. \emph{A niched Pareto genetic algorithm for multiobjective optimization}. Evolutionary Computation, 1994. IEEE World Congress on Computational Intelligence., Proceedings of the First IEEE Conference on (1994) 1: 82-87. doi:10.1109/ICEC.1994.350037
+%@INPROCEEDINGS{GA1, 
+%author={Horn, J. and Nafpliotis, N. and Goldberg, D.E.}, 
+%booktitle={Evolutionary Computation, 1994. IEEE World Congress on Computational Intelligence., Proceedings of the First IEEE Conference on}, 
+%title={A niched Pareto genetic algorithm for multiobjective optimization}, 
+%year={1994}, 
+%pages={82-87 vol.1}, 
+%keywords={genetic algorithms;operations research;optimisation;Niched Pareto GA;Pareto genetic algorithm;Pareto optimal set;genetic algorithm;multiobjective optimization;multiple objectives;niching pressure;optimization problems;Bioinformatics;Contracts;Costs;Genetic algorithms;Genomics;Internet;NASA;Pareto optimization;Sampling methods;Turning}, 
+%doi={10.1109/ICEC.1994.350037}}
+	\bibitem{GA2}
+		K. Deb, A. Pratap, S. Agarwal, and T. Meyarivan. \emph{A fast and elitist multiobjective genetic algorithm: NSGA-II}. Evolutionary Computation, IEEE Transactions on 6 (2): 182-197. doi:10.1109/4235.996017
+%@ARTICLE{GA1, 
+%author={Deb, K. and Pratap, A. and Agarwal, S. and Meyarivan, T.}, 
+%journal={Evolutionary Computation, IEEE Transactions on}, 
+%title={A fast and elitist multiobjective genetic algorithm: NSGA-II}, 
+%year={2002}, 
+%volume={6}, 
+%number={2}, 
+%pages={182-197}, 
+%keywords={Pareto distribution;computational complexity;constraint theory;convergence;genetic algorithms;operations research;simulation;sorting;NSGA-II;Nondominated Sorting Genetic Algorithm II;Pareto-archived evolution strategy;Pareto-optimal front;algorithm performance;computational complexity;constrained multi-objective problems;constraint handling;convergence;dominance definition;fast elitist multi-objective genetic algorithm;mating pool;multi-criterion decision making;multi-objective evolutionary algorithm;multi-objective optimization;nondominated sharing;nonlinear problem;objectives;parent/offspring population combination;population size;selection operator;simulation;solution fitness;solution spread;strength-Pareto evolutionary algorithm;Associate members;Computational complexity;Computational modeling;Constraint optimization;Decision making;Diversity reception;Evolutionary computation;Genetic algorithms;Sorting;Testing}, 
+%doi={10.1109/4235.996017}, 
+%ISSN={1089-778X}}
+
+	\bibitem{Shin2002321}
+		K-S Shin, Y-J Lee. \emph{A genetic algorithm application in bankruptcy prediction modeling}. Expert Systems w/ Applications (2002) 23 (3): 321-328. doi = "http://dx.doi.org/10.1016/S0957-4174(02)00051-9"
+%@article{Shin2002321,
+%title = "A genetic algorithm application in bankruptcy prediction modeling ",
+%journal = "Expert Systems with Applications ",
+%volume = "23",
+%number = "3",
+%pages = "321 - 328",
+%year = "2002",
+%note = "",
+%issn = "0957-4174",
+%doi = "http://dx.doi.org/10.1016/S0957-4174(02)00051-9",
+%url = "http://www.sciencedirect.com/science/article/pii/S0957417402000519",
+%author = "Kyung-Shik Shin and Yong-Joo Lee",
+%keywords = "Genetic algorithms",
+%keywords = "Rule extraction",
+%keywords = "Bankruptcy prediction "
+%}
+	\bibitem{WRR}
+		Q. J. Wang. \emph{The Genetic Algorithm and its Application to Calibrating Conceptual Rainfall-Runoff Models}. Water Resources Research 27 (9): 2467-2471. dpi:http://dx.doi.org/10.1029/91WR01305
+%@article {WRR,
+%author = {Wang, Q. J.},
+%title = {The Genetic Algorithm and Its Application to Calibrating Conceptual Rainfall-Runoff Models},
+%journal = {Water Resources Research},
+%volume = {27},
+%number = {9},
+%issn = {1944-7973},
+%url = {http://dx.doi.org/10.1029/91WR01305},
+%doi = {10.1029/91WR01305},
+%pages = {2467--2471},
+%year = {1991},
+%}
+
+\bibitem{CEM}
+R. Leardi. \emph{Application of genetic algorithm-PLS for feature selection in spectral data sets}. Journal of Chemometrics 14 (5-6): 643-655: DOI: 10.1002/1099-128X(200009/12)14:5/6<643::AID-CEM621>3.0.CO;2-E
+%@article {CEM,
+%author = {Leardi, Riccardo},
+%title = {Application of genetic algorithmÁ™∂Êí§LS for feature selection in spectral data sets},
+%journal = {Journal of Chemometrics},
+%volume = {14},
+%number = {5-6},
+%publisher = {John Wiley & Sons, Ltd.},
+%issn = {1099-128X},
+%url = {http://dx.doi.org/10.1002/1099-128X(200009/12)14:5/6<643::AID-CEM621>3.0.CO;2-E},
+%doi = {10.1002/1099-128X(200009/12)14:5/6<643::AID-CEM621>3.0.CO;2-E},
+%pages = {643--655},
+%keywords = {genetic algorithms, feature selection, PLS regression, spectral data},
+%year = {2000},
+%}
+
 \end{thebibliography}
 \end{multicols}
+
+\section{Appendix}
+\subsection{Experimental Results}
+\input{tableOutput.txt}
+
 \end{document}
 
 
