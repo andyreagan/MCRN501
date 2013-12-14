@@ -177,8 +177,11 @@ The experiments were chosen to mimic realisitic conditions under which simple mo
 \section{Results}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
+
+
 
 \clearpage
 \begin{center}
@@ -191,8 +194,13 @@ The experiments were chosen to mimic realisitic conditions under which simple mo
 		\hspace{-.3cm}\fbox{\includegraphics[width=.27\columnwidth]{sample4.pdf}}				
 	\end{array}$
 \end{center}
-{\bf\small Figure 2. (Top) A cartoon demonstrating the flow of control for GA execution. The population of random real-valued vectors is initialized, and each individual has its fitness assessed. With some probability individuals are selected for single-point crossover or mutation. The children from these processes are collected into the new population. This process is iterated for a prescribed number of generations or until iteration fails to yield improvement. (Bottom) An example illustrating the improvement in parameter estimation made by the GA when attempting to recover the parameters ($\sigma=10,b=8/3,R=28$) over 100 generations. The observed data (truth) is in \textcolor{blue}{blue}, while the trajectory yielded from the best guess at the true parameters is provided in \textcolor{red}{red}. From left to right, we show the best solution after 10, 35, 52, and 100 generations. We see that at 100 generations, the best guess at the true parameters is reasonably close to th!
- e correct answer ($\sigma=9.99711,b=2.66688,R=28.0004$)}\\
+{\bf\small Figure 2. (Top) A cartoon demonstrating the flow of control for GA execution. The population of random real-valued vectors is initialized, and each individual has its fitness assessed. With some probability individuals are selected for single-point crossover or mutation. The children from these processes are collected into the new population. This process is iterated for a prescribed number of generations or until iteration fails to yield improvement. (Bottom) An example illustrating the improvement in parameter estimation made by the GA when attempting to recover the parameters ($\sigma=10,b=8/3,R=28$) over 100 generations. The observed data (truth) is in \textcolor{blue}{blue}, while the trajectory yielded from the best guess at the true parameters is provided in \textcolor{red}{red}. From left to right, we show the best solution after 10, 35, 52, and 100 generations. We see that at 100 generations, the best guess at the true parameters is reasonably close to the correct answer ($\sigma=9.99711,b=2.66688,R=28.0004$)}\\
+
+\clearpage
+\begin{center}
+	\includegraphics[scale=1.00]{DA-figure.pdf}\\
+\end{center}
+{\bf\small  Example DA experiment: showing the $x_1$ variable of the Lorenz 63 system, with a observation subsampling of 25. With observational error, the EKF predicts the data well, frequently making analyses that are closer to the truth than the observations.}\\
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -374,7 +382,10 @@ R. Leardi. \emph{Application of genetic algorithm-PLS for feature selection in s
 
 \section{Appendix}
 \subsection{Experimental Results}
+
 \input{tableOutput.txt}
+
+\input{../DA-code/allTables.tex}
 
 \end{document}
 
