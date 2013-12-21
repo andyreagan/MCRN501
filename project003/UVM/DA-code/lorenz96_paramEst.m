@@ -24,7 +24,7 @@ classdef lorenz96_paramEst<handle
 		tstep = .001;
         I = 10; % slow oscillators
         J = 4; % fast guys per slow
-		dim = I*(J+1)+4; % add the parameters h,b,c,F
+		dim % = self.I*(self.J+1)+4; % add the parameters h,b,c,F
 		time = 0;
 		window = 1;
 		
@@ -35,7 +35,7 @@ classdef lorenz96_paramEst<handle
 		DIR
 	end % properties
 	methods
-		function self = lorenz96(varargin)
+		function test = lorenz96_paramEst(varargin)
 			%intialize the class
 		end %constructor
 		function init(self,varargin)
@@ -44,6 +44,7 @@ classdef lorenz96_paramEst<handle
             
 			self.x = rand(self.dim,1);
 			self.x(end-3:end) = 100*rand(4,1);
+            self.x(end-3:end) = [1;10;10;14];
 			
 			% ignore the first argument, if there is one
 			if nargin > 2
@@ -56,7 +57,7 @@ classdef lorenz96_paramEst<handle
 				self.run();
 				self.window = tmpwindow;
 				self.time = tmptime;
-            end
+            end % if
 		end %init
 		function run(self,varargin)
 			% run the case
@@ -81,9 +82,8 @@ end % classdef
 function dstate=lorenz96_model(~,state,params)
 I = params{1};
 J = params{2};
-h=state(end-3);c=state(end-2);b=state(end-1);F=state(end);
+h=state(end-3);b=state(end-2);c=state(end-1);F=state(end);
 state=reshape(state(1:end-4),I,J+1);
-IJ=I*J;
 
 X=state(:,1);
 
@@ -106,7 +106,7 @@ for i=1:I
     state(i,2:end)=Ys((i-1)*J+1:i*J);
 end;
 
-dstate=[reshape(state,numel(state)),1,0*(1:4)];
+dstate=[reshape(state,numel(state),1);(0*(1:4))'];
 end
 
 
@@ -172,4 +172,3 @@ for i=1:dim
 end;
 end
 
-end
