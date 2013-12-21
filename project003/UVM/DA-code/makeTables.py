@@ -313,7 +313,7 @@ for errorDist in ['normal','uniform']:
     ax1.set_yticklabels(obsErrorDict[errorDist])
     plt.savefig(picname)
     plt.savefig(picnamepdf)
-g
+
     plt.close(fig)
 
 
