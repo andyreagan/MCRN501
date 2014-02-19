@@ -22,36 +22,33 @@ classdef lorenz96_paramEst<handle
 		%basics
 		x
 		tstep = .001;
-        I = 10; % slow oscillators
-        J = 4; % fast guys per slow
+		I = 10; % slow oscillators
+		J = 4; % fast guys per slow
 		dim % = self.I*(self.J+1)+4; % add the parameters h,b,c,F
 		time = 0;
 		window = 1;
-		
 		params = {};
-		%for the TLM
+		% for the TLM
 		TLMmethod = 'rk4prime';
 		p_f
 		DIR
 	end % properties
 	methods
-		function test = lorenz96_paramEst(varargin)
-			%intialize the class
-		end %constructor
-		function init(self,varargin)
-            self.dim = self.I*(self.J+1)+4;
-            self.params = {self.I,self.J};
-            
-			self.x = rand(self.dim,1);
-			self.x(end-3:end) = 100*rand(4,1);
-            self.x(end-3:end) = [1;10;10;14];
-			
-			% ignore the first argument, if there is one
-			if nargin > 2
-				% setting given IC
-				self.x = varargin{2};
-			else
-				% generating climatological IC
+	    function test = lorenz96_paramEst(varargin)
+		%intialize the class
+	    end %constructor
+	    function init(self,varargin)
+                self.dim = self.I*(self.J+1)+4;
+		self.params = {self.I,self.J};
+		self.x = rand(self.dim,1);
+		self.x(end-3:end) = 100*rand(4,1);
+                self.x(end-3:end) = [1;10;10;14];
+	        % ignore the first argument, if there is one
+		if nargin > 2
+		    % setting given IC
+		    self.x = varargin{2};
+		else
+		    % generating climatological IC
 				tmpwindow = self.window; self.window = randi(10,1);
 				tmptime = self.time; self.time = 0;
 				self.run();
@@ -68,13 +65,8 @@ classdef lorenz96_paramEst<handle
 			self.time = self.time+self.window;
 			%fprintf('done\n');
 		end %run
-		function runTLM(self,p_a,varargin) % ALWAYS RUN THIS BEFORE self.run()!!
-			%fprintf('running the TLM...');
-			% right now, load this straight from the EKF
+		function runTLM(self,p_a,varargin) % ALWAYS RUN THIS BEFORE self.run()!!!
 			self.p_f = lorenz96_TLM(self.TLMmethod,self.time,self.window,self.x,self.tstep,p_a,self.params);
-			% don't update time...
-			%self.time = self.time+self.window;
-			%fprintf('done\n');
 		end %runTLM
 	end % methods
 end % classdef
@@ -126,7 +118,7 @@ switch method
 		%% rk4 prime method
 		
 		% integrate the foward model
-		[~,~,L] = rk4prime(@lorenz96_model,@lorenzJ_paramEst,params,[t t+window_len],x_a,tstep);
+		[~,~,L] = rk4prime(@lorenz96_model,@lorenz96J,params,[t t+window_len],x_a,tstep);
 		
 		% error covariance from model
 		p_f = L*p_a*L';
@@ -136,7 +128,7 @@ switch method
 		%% rk2 prime method
 		
 		% integrate the foward model
-		[~,~,L] = rk2prime(@lorenz96_model,@lorenzJ_paramEst,params,[t t+window_len],x_a,tstep);
+		[~,~,L] = rk2prime(@lorenz96_model,@lorenz96J,params,[t t+window_len],x_a,tstep);
 		
 		% error covariance from model
 		p_f = L*p_a*L';
@@ -144,25 +136,16 @@ end
 end
 
 
-function [J] = lorenzJ_paramEst(~,state,params)
-
-% the Lorenz '96 system, as a function
+function [J] = lorenz96J(~,state,params)
+% the Lorenz '96 system Jacobian
 %
 % INPUT
 %   t  - time, scalar
 %   x_vec  - column vector solution
 %   params  - cell array of parameters {b,s,r}
 
-% make these human
-%b = params(1); s = params(2); r = params(3);
-b = state(4); s = state(5); r = state(6);
-x = state(1); y = state(2); z = state(3);
-
-% normal
-% J = [-s,s,0;-z+r,-1,-x;y,x,-b];
-% with parameters
-J = zeros(6);
-J(1:3,:) = [-s s 0 0 y-x 0; r-z -1 -x 0 0 x; y x -b -z 0 0];
+% initialize
+J = zeros(length(state));
 
 % for L96
 I = params{1};
@@ -170,7 +153,7 @@ J = params{2};
 h=state(end-3);c=state(end-2);b=state(end-1);F=state(end);
 state=reshape(state(1:end-4),I,J+1);
 
-X=state(:,1);
+X=state(:,1);n
 dim=I;
 J=-1*eye(dim);
 for i=1:dim
@@ -179,4 +162,7 @@ for i=1:dim
     J(i,myMod(i+1,dim))=X(myMod(i-1,dim));
 end;
 end
+
+
+
 

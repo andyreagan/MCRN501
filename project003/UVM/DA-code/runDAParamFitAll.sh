@@ -39,7 +39,7 @@ do
       for OBSVAR in 1 3
       do
 	export OBSVAR
-	FILENAME="data/${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${RHO}_${OBSVAR}_${EXPCOUNT}_forecastEnds.csv"
+	FILENAME="data/${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${RHO}_${OBSVAR}_${EXPCOUNT}_analysisEnds.csv"
 	echo $FILENAME
 	if [ -f $FILENAME ]; then
 	  echo "already done"
@@ -65,7 +65,7 @@ do
       for OBSVAR in 1 3
       do
 	export OBSVAR
-	FILENAME="data/${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${RHO}_${OBSVAR}_${EXPCOUNT}_forecastEnds.csv"
+	FILENAME="data/${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${RHO}_${OBSVAR}_${EXPCOUNT}_analysisEnds.csv"
 	echo $FILENAME
 	if [ -f $FILENAME ]; then
 	  echo "already done"

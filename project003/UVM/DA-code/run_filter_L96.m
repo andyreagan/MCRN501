@@ -69,19 +69,6 @@ switch obs_error_type
     obs_pert = truth_vec(obsVar,:) + obs_error_std*rand(size(truth_vec(obsVar,:))) - obs_error_std/2*ones(size(truth_vec(obsVar,:)));
 end
 
-%% for running one of them, looking at the results
-%% [EKF_f_vec,EKF_a_vec] = modelDAinterface(@lorenz63_paramEst,'EKF',obs_pert,0:windowLen:(runTime*numRuns),H,R,windowLen,0,0);
-%% [ETKF_f_vec,ETKF_a_vec] = modelDAinterface(@lorenz63_paramEst,'ETKF',obs_pert,0:windowLen:(runTime*numRuns),H,R,windowLen,0,0); 
-
-%% fprintf('initial parameters\n'); disp(EKF_f_vec(:,1))
-%% fprintf('end of the truth\n'); disp(truth_vec(:,end-10:end))
-%% fprintf('end of the EKF forecast\n'); disp(EKF_f_vec(:,end-10:end))
-%% fprintf('end of the ETKF forecast\n'); disp(ETKF_f_vec(:,end-10:end))
-%% fprintf('forecast errors of EKF\n'); disp(std(EKF_f_vec(1,floor(length(EKF_f_vec(1,:))/2):end)-truth_vec(1,floor(length(EKF_f_vec(1,:))/2):end)))
-%% fprintf('analysis errors of EKF\n'); disp(std(EKF_a_vec(1,floor(length(EKF_a_vec(1,:))/2):end)-truth_vec(1,floor(length(EKF_a_vec(1,:))/2):end)))
-%% fprintf('forecast errors of ETKF\n'); disp(std(ETKF_f_vec(1,floor(length(ETKF_f_vec(1,:))/2):end)-truth_vec(1,floor(length(ETKF_f_vec(1,:))/2):end)))
-%% fprintf('analysis errors of ETKF\n'); disp(std(ETKF_a_vec(1,floor(length(ETKF_a_vec(1,:))/2):end)-truth_vec(1,floor(length(ETKF_a_vec(1,:))/2):end)))
-
 %% store many runs (this will be output). first entry is truth
 allForecasts = ones(dim,numRuns+1);
 allForecasts(:,1) = truth_vec(:,end);
@@ -97,8 +84,8 @@ end
 
 %% save all of the end
 %% forecasts
-csvwrite(sprintf('data/%s_%g_%g_%g_%g_%g_%g_%g_forecastEnds.csv',obs_error_type,obs_error_std,numRuns,runTime,windowAlpha,rho,obsVarLen,expCount),allForecasts);
-csvwrite(sprintf('data/%s_%g_%g_%g_%g_%g_%g_%g_analysisEnds.csv',obs_error_type,obs_error_std,numRuns,runTime,windowAlpha,rho,obsVarLen,expCount),allAnalyses);
+csvwrite(sprintf('data/L96_%s_%g_%g_%g_%g_%g_%g_%g_forecastEnds.csv',obs_error_type,obs_error_std,numRuns,runTime,windowAlpha,rho,obsVarLen,expCount),allForecasts);
+csvwrite(sprintf('data/L96_%s_%g_%g_%g_%g_%g_%g_%g_analysisEnds.csv',obs_error_type,obs_error_std,numRuns,runTime,windowAlpha,rho,obsVarLen,expCount),allAnalyses);
 
 fprintf('success\n');
 
