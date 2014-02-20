@@ -29,7 +29,7 @@ expCount = checkenv('EXPCOUNT',1);
 
 %% fixed
 J = 4;
-dim = I*(J+1)+4;
+dim = (I)*(J+1)+4;
 tStep = 0.001;
 
 fprintf('save file is\n');
@@ -57,7 +57,7 @@ truthmodel.I = I;
 truthmodel.init();
 truthmodel.window = windowLen;
 %% save the IC
-truth_vec = ones((I+1)*J+4,num_windows+1); %J is fixed at 4
+truth_vec = ones((I)*(J+1)+4,num_windows+1); %J is fixed at 4
 truth_vec(:,1) = truthmodel.x;
 %% generate the truth x timeseries
 for j=1:num_windows

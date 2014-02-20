@@ -39,7 +39,7 @@ classdef lorenz96_paramEst<handle
 	    end %constructor
 	    function init(self,varargin)
 	        self.I = checkenv('DIMENSION',4);;
-                self.dim = (self.I+1)*(self.J)+4;
+                self.dim = (self.I)*(self.J+1)+4;
 		self.params = {self.I,self.J};
 		self.x = rand(self.dim,1);
 		self.x(end-3:end) = 100*rand(4,1);

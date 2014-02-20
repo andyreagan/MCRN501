@@ -10,51 +10,51 @@ cd /users/a/r/areagan/class/2013/MCRN501/project003/UVM/DA-code
 ##        SINGLE EXPERIMENT       ##
 ####################################
 
-EXPCOUNT=1 ## will run through 5 experiments
+export EXPCOUNT=1 ## will run through 5 experiments
 ## tunable parameters
-NUMRUNS=100
-RUNTIME=200
+export NUMRUNS=2
+export RUNTIME=100
 ## part of experiment
-OBSERROR=0.05
-ERRORDIST="normal"
-SUBSAMPLEALPHA=1
-DIMENSION=4
+export OBSERROR=0.05
+export ERRORDIST="normal"
+export SUBSAMPLEALPHA=1
+export DIMENSION=10
 qsub -q workq -V runL96.qsub
 
 #####################################
 ##       FULL EXPERIMENT           ##
 #####################################
 
-## tunable parameters
-export NUMRUNS=100
-export RUNTIME=200
+# ## tunable parameters
+# export NUMRUNS=100
+# export RUNTIME=200
 
-## for normal error
-ERRORDIST="normal"
-export ERRORDIST
-for EXPCOUNT in {1..5} ## will run through 5 experiments
-do
-  export EXPCOUNT
-  for OBSERROR in 0 0.01 0.05 0.1 0.25 0.5 1 2
-  do
-    export OBSERROR
-    for SUBSAMPLEALPHA in 1 5 25 50
-    do
-      export SUBSAMPLEALPHA
-      for DIMENSION in 4 8 10 15
-      do
-	export DIMENSION
-  	FILENAME="data/L96_${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${DIMENSION}_${EXPCOUNT}_forecastEnds.csv"
-  	echo $FILENAME
-  	if [ -f $FILENAME ]; then
-  	  echo "already done"
-  	else
-  	  qsub -q workq -V runL96.qsub
-  	fi
-      done
-    done
-  done
-done
+# ## for normal error
+# ERRORDIST="normal"
+# export ERRORDIST
+# for EXPCOUNT in {1..5} ## will run through 5 experiments
+# do
+#   export EXPCOUNT
+#   for OBSERROR in 0 0.01 0.05 0.1 0.25 0.5 1 2
+#   do
+#     export OBSERROR
+#     for SUBSAMPLEALPHA in 1 5 25 50
+#     do
+#       export SUBSAMPLEALPHA
+#       for DIMENSION in 4 8 10 15
+#       do
+# 	export DIMENSION
+#   	FILENAME="data/L96_${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${DIMENSION}_${EXPCOUNT}_forecastEnds.csv"
+#   	echo $FILENAME
+#   	if [ -f $FILENAME ]; then
+#   	  echo "already done"
+#   	else
+#   	  qsub -q workq -V runL96.qsub
+#   	fi
+#       done
+#     done
+#   done
+# done
 
 # ## for uniform error
 # ERRORDIST="uniform"
