@@ -22,7 +22,7 @@ classdef lorenz96_paramEst<handle
 		%basics
 		x
 		tstep = .001;
-		I = 10; % slow oscillators
+		I = 4; % slow oscillators
 		J = 4; % fast guys per slow
 		dim % = self.I*(self.J+1)+4; % add the parameters h,b,c,F
 		time = 0;
@@ -38,7 +38,8 @@ classdef lorenz96_paramEst<handle
 		%intialize the class
 	    end %constructor
 	    function init(self,varargin)
-                self.dim = self.I*(self.J+1)+4;
+	        self.I = checkenv('DIMENSION',4);;
+                self.dim = (self.I+1)*(self.J)+4;
 		self.params = {self.I,self.J};
 		self.x = rand(self.dim,1);
 		self.x(end-3:end) = 100*rand(4,1);
@@ -135,8 +136,7 @@ switch method
 end
 end
 
-
-function [J] = lorenz96J(~,state,params)
+function [Jac] = lorenz96J(~,state,params)
 % the Lorenz '96 system Jacobian
 %
 % INPUT
@@ -145,23 +145,62 @@ function [J] = lorenz96J(~,state,params)
 %   params  - cell array of parameters {b,s,r}
 
 % initialize
-J = zeros(length(state));
+Jac = zeros(length(state));
 
 % for L96
 I = params{1};
 J = params{2};
 h=state(end-3);c=state(end-2);b=state(end-1);F=state(end);
-state=reshape(state(1:end-4),I,J+1);
+matstate=reshape(state(1:end-4),I,J+1);
 
-X=state(:,1);n
-dim=I;
-J=-1*eye(dim);
-for i=1:dim
-    J(i,myMod(i-2,dim))=-X(myMod(i-1,dim));
-    J(i,myMod(i-1,dim))=X(myMod(i+1,dim))-X(myMod(i-2,dim));
-    J(i,myMod(i+1,dim))=X(myMod(i-1,dim));
+X=state(:,1);
+
+% march down the x_i
+for i=1:I
+    % fill in the x_j
+    % these are the four nonzero x_i derivatives
+    tmp=[-X(myMod(i-1,I)),X(myMod(i+1,I))-X(myMod(i-2,I)),-1,X(myMod(i-1,I))];
+    for j=1:4
+        % put them in the right location
+        % could vectorize this
+        Jac(i,myMod(j-2,I)) = tmp(j);
+    end
+    % these are the J nonzero y_ji derivatives
+    % this could be easy to vectorize
+    for j=1:J
+        Jac(i,I+(i-1)*J+j) = -h*c/b;
+    end
+    % now these are the parameter derivatives that matter
+    Jac(i,end-3) = -c/b*sum(matstate(i,2:end));
+    Jac(i,end-2) = -h/b*sum(matstate(i,2:end));
+    Jac(i,end-1) = -h*c*sum(matstate(i,2:end));
 end;
+
+% march down the y_ij by i
+for i=1:I
+    % march down the y_ij by j
+    for j=1:J
+        % actual row of the L matrix we're at
+        % the i and j are model centric
+        ind = I+(i-1)*J+j;
+        % first, there is one nonzero x_i derivative
+        Jac(ind,i) = h*c/b;
+	% these are the four nonzero y_ij derivatives
+        tmp=[c*b*matstate(i,myMod(j+1,J)+1),-c,matstate(i,myMod(j-1,J)+1)-matstate(i,myMod(j+2,J)+1),-c*b*matstate(i,myMod(j+1,J)+1)];
+	for ind2=0:3
+            % put them in the right location
+            % could vectorize this
+            Jac(ind,myMod(j+ind2,J)+I+(i-1)*J) = tmp(ind2+1);
+	end
+	% now these are the parameter derivatives that matter
+	tmp2 = tmp(3)*matstate(i,myMod(j+1,J)+1);
+	Jac(ind,end-3) = c/b*X(i);
+        Jac(ind,end-2) = c*tmp2+h/b*X(i);
+        Jac(ind,end-1) = b*tmp2-matstate(i,j+1)+h*c*X(i);
+    end
 end
+
+end%function lorenz96J
 
 
 

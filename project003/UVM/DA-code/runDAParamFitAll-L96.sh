@@ -19,42 +19,42 @@ OBSERROR=0.05
 ERRORDIST="normal"
 SUBSAMPLEALPHA=1
 DIMENSION=4
-qsub -q workq -V run.qsub
+qsub -q workq -V runL96.qsub
 
 #####################################
 ##       FULL EXPERIMENT           ##
 #####################################
 
-# ## tunable parameters
-# export NUMRUNS=100
-# export RUNTIME=200
+## tunable parameters
+export NUMRUNS=100
+export RUNTIME=200
 
-# ## for normal error
-# ERRORDIST="normal"
-# export ERRORDIST
-# for EXPCOUNT in {1..5} ## will run through 5 experiments
-# do
-#   export EXPCOUNT
-#   for OBSERROR in 0 0.01 0.05 0.1 0.25 0.5 1 2
-#   do
-#     export OBSERROR
-#     for SUBSAMPLEALPHA in 1 5 25 50
-#     do
-#       export SUBSAMPLEALPHA
-#       for DIMENSION in 4 8 10 15
-#       do
-# 	export DIMENSION
-#   	FILENAME="data/L96_${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${DIMENSION}_${EXPCOUNT}_forecastEnds.csv"
-#   	echo $FILENAME
-#   	if [ -f $FILENAME ]; then
-#   	  echo "already done"
-#   	else
-#   	  qsub -q workq -V run.qsub
-#   	fi
-#       done
-#     done
-#   done
-# done
+## for normal error
+ERRORDIST="normal"
+export ERRORDIST
+for EXPCOUNT in {1..5} ## will run through 5 experiments
+do
+  export EXPCOUNT
+  for OBSERROR in 0 0.01 0.05 0.1 0.25 0.5 1 2
+  do
+    export OBSERROR
+    for SUBSAMPLEALPHA in 1 5 25 50
+    do
+      export SUBSAMPLEALPHA
+      for DIMENSION in 4 8 10 15
+      do
+	export DIMENSION
+  	FILENAME="data/L96_${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${DIMENSION}_${EXPCOUNT}_forecastEnds.csv"
+  	echo $FILENAME
+  	if [ -f $FILENAME ]; then
+  	  echo "already done"
+  	else
+  	  qsub -q workq -V runL96.qsub
+  	fi
+      done
+    done
+  done
+done
 
 # ## for uniform error
 # ERRORDIST="uniform"
@@ -76,7 +76,7 @@ qsub -q workq -V run.qsub
 #   	if [ -f $FILENAME ]; then
 #   	  echo "already done"
 #   	else
-#   	  qsub -q workq -V run.qsub
+#   	  qsub -q workq -V runL96.qsub
 #   	fi
 #       done
 #     done
