@@ -1,15 +1,9 @@
-# This job needs 1 compute node with 1 processor per node.
-#PBS -l nodes=1:ppn=1
-# It should be allowed to run for up to 24 hours.
-#PBS -l walltime=10:00:00
-# Name of job.
+#PBS -l nodes=1:ppn=2,pmem=2gb,pvmem=3gb
+#PBS -l walltime=30:00:00
 #PBS -N DA_L96_Parameter_Estimation
-# Join STDERR TO STDOUT.  (omit this if you want separate STDOUT AND STDERR)
 #PBS -j oe
 
-## for a single test (always find something wrong)
 echo "experiment count $EXPCOUNT"
-## tunable parameters
 echo "$NUMRUNS runs"
 echo "$RUNTIME time"
 echo "ERRORDIST=$ERRORDIST"
@@ -17,7 +11,9 @@ echo "EXPCOUNT=$EXPCOUNT"
 echo "OBSERROR=$OBSERROR"
 echo "DIMENSION=$DIMENSION"
 
-echo "output is in data/L96_${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${DIMENSION}_${EXPCOUNT}_forecastEnds.csv"
+# data/L96_normal_0.5_20_100_1_4_2_forecastEnds.csv
+FILENAME="data/L96_${ERRORDIST}_${OBSERROR}_${NUMRUNS}_${RUNTIME}_${SUBSAMPLEALPHA}_${DIMENSION}_${EXPCOUNT}_forecastEnds.csv"
+echo "output is in $FILENAME"
 
 cd /users/a/r/areagan/class/2013/MCRN501/project003/UVM/DA-code
 echo "running a parameter estimation of L96 using EKF"

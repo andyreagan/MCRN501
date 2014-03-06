@@ -1,8 +1,8 @@
 /*
  * MATLAB Compiler: 4.13 (R2010a)
- * Date: Tue Feb 25 13:57:32 2014
+ * Date: Tue Feb 25 13:56:53 2014
  * Arguments: "-B" "macro_default" "-m" "-W" "main" "-T" "link:exe"
- * "run_filter.m" 
+ * "run_filter_L96.m" 
  */
 #include <stdio.h>
 #include "mclmcrrt.h"
@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-extern mclComponentData __MCC_run_filter_component_data;
+extern mclComponentData __MCC_run_filter_L96_component_data;
 
 #ifdef __cplusplus
 }
@@ -50,12 +50,12 @@ static int mclDefaultErrorHandler(const char *s)
 } /* End extern "C" block */
 #endif
 
-#ifndef LIB_run_filter_C_API
-#define LIB_run_filter_C_API /* No special import/export declaration */
+#ifndef LIB_run_filter_L96_C_API
+#define LIB_run_filter_L96_C_API /* No special import/export declaration */
 #endif
 
-LIB_run_filter_C_API 
-bool MW_CALL_CONV run_filterInitializeWithHandlers(
+LIB_run_filter_L96_C_API 
+bool MW_CALL_CONV run_filter_L96InitializeWithHandlers(
     mclOutputHandlerFcn error_handler,
     mclOutputHandlerFcn print_handler)
 {
@@ -66,19 +66,19 @@ bool MW_CALL_CONV run_filterInitializeWithHandlers(
     return false;
     {
         mclCtfStream ctfStream = 
-            mclGetEmbeddedCtfStream((void *)(run_filterInitializeWithHandlers), 
-                                    33129);
+            mclGetEmbeddedCtfStream((void *)(run_filter_L96InitializeWithHandlers), 
+                                    34016);
         if (ctfStream) {
             bResult = mclInitializeComponentInstanceEmbedded(   &_mcr_inst,
                                                                 
-                                                     &__MCC_run_filter_component_data,
+                                                     &__MCC_run_filter_L96_component_data,
                                                                 true, 
                                                                 NoObjectType, 
                                                                 ExeTarget,
                                                                 error_handler, 
                                                                 print_handler,
                                                                 ctfStream, 
-                                                                33129);
+                                                                34016);
             mclDestroyStream(ctfStream);
         } else {
             bResult = 0;
@@ -89,13 +89,14 @@ bool MW_CALL_CONV run_filterInitializeWithHandlers(
   return true;
 }
 
-LIB_run_filter_C_API 
-bool MW_CALL_CONV run_filterInitialize(void)
+LIB_run_filter_L96_C_API 
+bool MW_CALL_CONV run_filter_L96Initialize(void)
 {
-  return run_filterInitializeWithHandlers(mclDefaultErrorHandler, mclDefaultPrintHandler);
+  return run_filter_L96InitializeWithHandlers(mclDefaultErrorHandler, 
+                                              mclDefaultPrintHandler);
 }
-LIB_run_filter_C_API 
-void MW_CALL_CONV run_filterTerminate(void)
+LIB_run_filter_L96_C_API 
+void MW_CALL_CONV run_filter_L96Terminate(void)
 {
   if (_mcr_inst != NULL)
     mclTerminateInstance(&_mcr_inst);
@@ -107,14 +108,14 @@ int run_main(int argc, const char **argv)
   /* Generate and populate the path_to_component. */
   char path_to_component[(PATH_MAX*2)+1];
   separatePathName(argv[0], path_to_component, (PATH_MAX*2)+1);
-  __MCC_run_filter_component_data.path_to_component = path_to_component; 
-  if (!run_filterInitialize()) {
+  __MCC_run_filter_L96_component_data.path_to_component = path_to_component; 
+  if (!run_filter_L96Initialize()) {
     return -1;
   }
   argc = mclSetCmdLineUserData(mclGetID(_mcr_inst), argc, argv);
-  _retval = mclMain(_mcr_inst, argc, argv, "run_filter", 0);
+  _retval = mclMain(_mcr_inst, argc, argv, "run_filter_L96", 0);
   if (_retval == 0 /* no error */) mclWaitForFiguresToDie(NULL);
-  run_filterTerminate();
+  run_filter_L96Terminate();
   mclTerminateApplication();
   return _retval;
 }
@@ -122,8 +123,8 @@ int run_main(int argc, const char **argv)
 int main(int argc, const char **argv)
 {
   if (!mclInitializeApplication(
-    __MCC_run_filter_component_data.runtime_options, 
-    __MCC_run_filter_component_data.runtime_option_count))
+    __MCC_run_filter_L96_component_data.runtime_options, 
+    __MCC_run_filter_L96_component_data.runtime_option_count))
     return 0;
 
   return mclRunMain(run_main, argc, argv);
